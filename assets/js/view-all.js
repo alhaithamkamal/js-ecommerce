@@ -1,7 +1,21 @@
 $(function(){
-    var page = 1,
-        limit = 10,
-        total_items = 0;
+     var page = 1,
+        limit = 8,
+        total_items = 0,
+        pages=0
+        ;
+
+     $("select.nice-select").change(function(){
+        limit = $(this).children("option:selected").val();
+         for(let j= parseInt(pages);j>0;j--)
+                {
+                    $("#"+j+"").remove();
+                   
+                } 
+        fetchData();
+    });
+
+   
     const products_wrap = document.getElementById('products-wrap');
     fetchData();
     console.log("hello");
@@ -36,7 +50,7 @@ $(function(){
         console.log("data",data.limit);
         let products = data.data;
         total_items = data.total_items;
-        let pages = data.total_pages;
+        pages = data.total_pages;
         console.log("products :",products);
 
 

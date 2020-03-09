@@ -78,6 +78,7 @@ body {
   color: #444444;
   position: relative; }
 
+
 h1, h2, h3, h4, h5, h6 {
   color: #202020;
   font-family: "Open Sans", sans-serif;
@@ -258,7 +259,8 @@ ul {
   margin-top: 25px; }
 
 .mt-30 {
-  margin-top: 30px; }
+  margin-top: 30px;
+  margin-bottom:  30px; }
 
 .mt-35 {
   margin-top: 35px; }
@@ -2126,7 +2128,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 #scrollUp {
   width: 40px;
   height: 40px;
-  background-color: #f5d730;
+  background-color: #00bcd4;
   border: 3px solid #eeeeee;
   color: #202020;
   right: 20px;
@@ -3281,7 +3283,7 @@ img.mfp-img {
   flex-grow: 0;
   -ms-flex-preferred-size: auto;
   flex-basis: auto;
-  width: auto; }
+  width: 100%; }
 
 .header-top .justify-content-center > [class*="col"]:first-child {
   -webkit-box-pack: start;
@@ -3480,7 +3482,7 @@ img.mfp-img {
     font-size: 12px;
     font-weight: 600;
     color: #202020;
-    background-color: #f5d730;
+    background-color: #00bcd4;
     display: block;
     overflow: hidden;
     text-align: center;
@@ -3866,7 +3868,7 @@ img.mfp-img {
     .header-advance-search .submit button {
       border-top-right-radius: 50px;
       border-bottom-right-radius: 50px;
-      background-color: #f5d730;
+      background-color: #00bcd4;
       color: #202020;
       border: none;
       width: 70px;
@@ -6952,11 +6954,15 @@ img.mfp-img {
       .ee-product .image .label.new {
         color: #ff0000; }
     .ee-product .image .img {
+      height: 260px;
       display: block;
-      background-color: #f6f7f8; }
+      background-color: #f6f7f8;
+      width: 230px;
+       }
       .ee-product .image .img img {
         display: block;
-        width: 100%; }
+        width: 100%;
+        height: 100%; }
     .ee-product .image .wishlist-compare {
       position: absolute;
       top: 20px;
@@ -7040,7 +7046,7 @@ img.mfp-img {
       -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
       transform: translateX(-50%);
-      background-color: #f5d730;
+      background-color: #00bcd4;
       color: #202020;
       border-radius: 50px;
       display: block;
@@ -11799,3 +11805,4 @@ ul.link-widget li {
   height: 120px;
   resize: none;
   background-color: transparent; }
+
