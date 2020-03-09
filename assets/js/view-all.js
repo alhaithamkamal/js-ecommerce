@@ -2,24 +2,28 @@ $(function(){
     var page = 1,
         limit = 10,
         total_items = 0;
-    fetchData();
     const products_wrap = document.getElementById('products-wrap');
+    fetchData();
+    console.log("hello");
 
-    
     $("#back").on("click",function(){
         if(page > 1){
             page--;
-            fetchData();
             console.log("page ",page);
+            fetchData();
+
         }
     });
     $("#next").on("click",function(){
         if(page * limit < total_items){
             page++;
-            fetchData();
             console.log("page ",page);
+            fetchData();
         }
     });
+
+
+
     function fetchData(){
         $.ajax({
         url: "https://afternoon-falls-30227.herokuapp.com/api/v1/products/",
@@ -29,10 +33,36 @@ $(function(){
             limit:limit
         },
         success: function(data){
-        console.log("data",data);
-        let products = data.data
+        console.log("data",data.limit);
+        let products = data.data;
         total_items = data.total_items;
+        let pages = data.total_pages;
+        console.log("products :",products);
 
+
+        $(".product-pages").html("<p>Pages "+page+" of "+pages+"</p>");
+
+        for(let i = parseInt(pages);i>0;i--)
+        {
+            $("#back").after("<li  id="+i+"><a >"+i+"</a></li>");
+           
+        } 
+        for(let i = pages;i>0;i--)
+        {
+             $("#"+i+"").on("click",function(){
+                 for(let j= parseInt(pages);j>0;j--)
+                {
+                    $("#"+j+"").remove();
+                   
+                } 
+                page=i;
+               
+               fetchData();
+                console.log("page ",page);
+        
+            });
+        }
+        $("#"+page+"").addClass("active");
         $(products_wrap).empty();
         products.forEach(product => {
             //console.log(product);
