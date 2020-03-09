@@ -1,12 +1,38 @@
-window.onload = fetchProducts("https://afternoon-falls-30227.herokuapp.com/api/v1/products/");
-const products_wrap = document.getElementById('products-wrap');
-function fetchProducts(url) {
-    fetch(url)
-    .then(response=>{
-        return response.json();
-    })
-    .then(response => {
-        let products = response.data
+$(function(){
+    var page = 1,
+        limit = 10,
+        total_items = 0;
+    fetchData();
+    const products_wrap = document.getElementById('products-wrap');
+
+    
+    $("#back").on("click",function(){
+        if(page > 1){
+            page--;
+            fetchData();
+            console.log("page ",page);
+        }
+    });
+    $("#next").on("click",function(){
+        if(page * limit < total_items){
+            page++;
+            fetchData();
+            console.log("page ",page);
+        }
+    });
+    function fetchData(){
+        $.ajax({
+        url: "https://afternoon-falls-30227.herokuapp.com/api/v1/products/",
+        type: "GET",
+        data: {
+            page: page,
+            limit:limit
+        },
+        success: function(data){
+        console.log("data",data);
+        let products = data.data
+        total_items = data.total_items;
+
         $(products_wrap).empty();
         products.forEach(product => {
             //console.log(product);
@@ -16,10 +42,7 @@ function fetchProducts(url) {
                 <!-- Image -->
                 <div class="image">
                     <a href="single-product.html?id=${product.ProductId}" class="img"><img src="${product.ProductPicUrl}" alt="Product Image"></a>
-                    <div class="wishlist-compare">
-                        <a href="#" data-tooltip="Compare"><i class="ti-control-shuffle"></i></a>
-                        <a href="#" data-tooltip="Wishlist"><i class="ti-heart"></i></a>
-                    </div>
+                    
                     <a href="#" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
                 </div>
                 <!-- Content -->
@@ -33,13 +56,7 @@ function fetchProducts(url) {
                     <div class="price-ratting">
 
                         <h5 class="price">$${product.Price}</h5>
-                        <div class="ratting">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                            <i class="fa fa-star-o"></i>
-                        </div>
+                        
                     </div>
                 </div>
             </div><!-- Product End -->
@@ -94,8 +111,15 @@ function fetchProducts(url) {
             </div><!-- Product List End -->
         </div>`)
         });
-    })
-    .catch(err => {
-        console.log(err);
-    })
-}
+            
+        },
+        error: function(jqXHR,textStatus,errorThrown){
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown);
+        }
+
+    });
+    
+    }
+});
