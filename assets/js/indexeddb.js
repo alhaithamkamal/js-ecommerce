@@ -25,25 +25,14 @@ function openDB(){
     }
 }
 function save_order(totalPrice) {
+    console.log(totalPrice);
     if (db instanceof IDBDatabase) {
+    console.log(totalPrice);
         const tx = db.transaction(ORDERS_STORE_NAME, 'readwrite');
         const orderStore = tx.objectStore(ORDERS_STORE_NAME);
         orderStore.add({
             total_price: totalPrice,
             date: new Date(),
         });
-    }
-}
-function get_orders(totalPrice) {
-    if (db instanceof IDBDatabase) {
-        const tx = db.transaction(ORDERS_STORE_NAME, 'readwrite');
-        const orderStore = tx.objectStore(ORDERS_STORE_NAME);
-        let res = orderStore.getAll();
-        res.onsuccess((e) => {
-            return e.target.result
-        })
-        res.onerror((e) => {
-            return null
-        })
     }
 }
