@@ -1,13 +1,17 @@
-$(function(){
-     var page = 1,
+
+$(function(){ 
+ 
+    var page = 1,
         limit = 8,
         total_items = 0,
         pages=0
         ;
 
+  
+    
      $("select.nice-select").change(function(){
         limit = $(this).children("option:selected").val();
-         for(let j= parseInt(pages);j>0;j--)
+         for(let j= parseInt((pages+page)/2);j>=page;j--)
                 {
                     $("#"+j+"").remove();
                    
@@ -18,10 +22,14 @@ $(function(){
    
     const products_wrap = document.getElementById('products-wrap');
     fetchData();
-    console.log("hello");
 
     $("#back").on("click",function(){
         if(page > 1){
+             for(let j= parseInt((pages+page)/2);j>=page;j--)
+                {
+                    $("#"+j+"").remove();
+                   
+                } 
             page--;
             console.log("page ",page);
             fetchData();
@@ -30,6 +38,11 @@ $(function(){
     });
     $("#next").on("click",function(){
         if(page * limit < total_items){
+             for(let j= parseInt((pages+page)/2);j>=page;j--)
+                {
+                    $("#"+j+"").remove();
+                   
+                } 
             page++;
             console.log("page ",page);
             fetchData();
@@ -56,7 +69,7 @@ $(function(){
 
         $(".product-pages").html("<p>Pages "+page+" of "+pages+"</p>");
 
-        for(let i = parseInt(pages);i>0;i--)
+        for(let i = parseInt((pages+page)/2);i>=page;i--)
         {
             $("#back").after("<li  id="+i+"><a >"+i+"</a></li>");
            
@@ -64,7 +77,7 @@ $(function(){
         for(let i = pages;i>0;i--)
         {
              $("#"+i+"").on("click",function(){
-                 for(let j= parseInt(pages);j>0;j--)
+                 for(let j= parseInt((pages+page)/2);j>=page;j--)
                 {
                     $("#"+j+"").remove();
                    

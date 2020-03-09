@@ -8477,7 +8477,7 @@ img.mfp-img {
       margin-bottom: 33px; }
       .single-product-content .single-product-description .actions .add-to-cart {
         position: relative;
-        background-color: #f5d730;
+        background-color: #00bcd4;
         color: #202020;
         border-radius: 50px;
         display: block;
@@ -11806,3 +11806,26 @@ ul.link-widget li {
   resize: none;
   background-color: transparent; }
 
+ #loader { 
+            border: 12px solid #f3f3f3; 
+            border-radius: 50%; 
+            border-top: 12px solid #444444; 
+            width: 70px; 
+            height: 70px; 
+            animation: spin 1s linear infinite; 
+        } 
+          
+        @keyframes spin { 
+            100% { 
+                transform: rotate(360deg); 
+            } 
+        } 
+          
+        .center { 
+            position: absolute; 
+            top: 0; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            margin: auto; 
+        } 
