@@ -93,9 +93,16 @@ function fetchProducts(url) {
                 </div>
             </div><!-- Product List End -->
         </div>`)
+        $('.cat').click(event => {
+            event.preventDefault()
+            fetch_products_by_category(product.Category)
+        })   
         });
     })
     .catch(err => {
         console.log(err);
     })
+}
+function fetch_products_by_category(category) {
+    fetchProducts(`https://afternoon-falls-30227.herokuapp.com/api/v1/products?category=${category}`);
 }
