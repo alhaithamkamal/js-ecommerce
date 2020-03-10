@@ -17,6 +17,7 @@ $(function(){
             fetchProducts(url);
     });
     const products_wrap = document.getElementById('products-wrap');
+    const q = document.getElementById('q');
     fetchProducts(url);
 
     $("#back").on("click",function(){
@@ -163,6 +164,10 @@ $(function(){
             fetch_products_by_category(product.Category)
         })   
         });
+        $('#btn').click(event => {
+            event.preventDefault()
+            fetch_products_by_search(q.value)
+        })
         $(".add-to-cart").click(function(){
             toastr.success('We do have the Kapua suite available.', 'Success Alert', {timeOut: 5000})
          });
@@ -176,5 +181,8 @@ $(function(){
     }
     function fetch_products_by_category(category) {
         fetchProducts(`https://afternoon-falls-30227.herokuapp.com/api/v1/products?category=${category}`);
+    }
+    function fetch_products_by_search(q){
+        fetchProducts(`https://afternoon-falls-30227.herokuapp.com/api/v1/products?q=${q}`);
     }
 });
