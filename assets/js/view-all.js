@@ -4,11 +4,9 @@ $(function(){
     var page = 1,
         limit = 8,
         total_items = 0,
-        pages=0
+        pages=0,
+        url = "https://afternoon-falls-30227.herokuapp.com/api/v1/products?category"
         ;
-
-  
-    
      $("select.nice-select").change(function(){
         limit = $(this).children("option:selected").val();
          for(let j= parseInt((pages+page)/2);j>=page;j--)
@@ -16,12 +14,10 @@ $(function(){
                     $("#"+j+"").remove();
                    
                 } 
-        fetchData();
+            fetchProducts(url);
     });
-
-   
     const products_wrap = document.getElementById('products-wrap');
-    fetchData();
+    fetchProducts(url);
 
     $("#back").on("click",function(){
         if(page > 1){
@@ -31,8 +27,8 @@ $(function(){
                    
                 } 
             page--;
-            console.log("page ",page);
-            fetchData();
+            // console.log("page ",page);
+            fetchProducts(url);
 
         }
     });
@@ -44,29 +40,24 @@ $(function(){
                    
                 } 
             page++;
-            console.log("page ",page);
-            fetchData();
+            //console.log("page ",page);
+            fetchProducts(url);
         }
     });
-
-
-
-    function fetchData(){
+    function fetchProducts(url){
         $.ajax({
-        url: "https://afternoon-falls-30227.herokuapp.com/api/v1/products/",
+        url: url,
         type: "GET",
         data: {
             page: page,
             limit:limit
         },
         success: function(data){
-        console.log("data",data.limit);
+        // console.log("data",data.limit);
         let products = data.data;
         total_items = data.total_items;
         pages = data.total_pages;
-        console.log("products :",products);
-
-
+        // console.log("products :",products);
         $(".product-pages").html("<p>Pages "+page+" of "+pages+"</p>");
 
         for(let i = parseInt((pages+page)/2);i>=page;i--)
@@ -84,8 +75,8 @@ $(function(){
                 } 
                 page=i;
                
-               fetchData();
-                console.log("page ",page);
+                fetchProducts(url);
+                //console.log("page ",page);
         
             });
         }
@@ -181,13 +172,9 @@ $(function(){
             console.log(textStatus);
             console.log(errorThrown);
         }
-
     });
-    
     }
-    
-
+    function fetch_products_by_category(category) {
+        fetchProducts(`https://afternoon-falls-30227.herokuapp.com/api/v1/products?category=${category}`);
+    }
 });
-function fetch_products_by_category(category) {
-    fetchProducts(`https://afternoon-falls-30227.herokuapp.com/api/v1/products?category=${category}`);
-}
