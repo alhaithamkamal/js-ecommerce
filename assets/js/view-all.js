@@ -168,7 +168,9 @@ $(function(){
             </div><!-- Product List End -->
         </div>`)
         });
-            
+        $(".add-to-cart").click(function(){
+            toastr.success('We do have the Kapua suite available.', 'Success Alert', {timeOut: 5000})
+         });
         },
         error: function(jqXHR,textStatus,errorThrown){
             console.log(jqXHR);
@@ -179,4 +181,6 @@ $(function(){
     });
     
     }
+    
+
 });

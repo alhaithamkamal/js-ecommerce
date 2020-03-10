@@ -68,7 +68,7 @@ $(function(){
                         </div>
                         
                         <span class="availability">Availability:
-                            <span>In Stock</span>
+                           
                        
                          </span>
                         
@@ -78,9 +78,7 @@ $(function(){
                                 <h5>Quantity</h5>
                                 
                                 <div class="pro-qty">
-                                    <span class="dec qtybtn">-</span>
                                     <input type="text" value="1">
-                                    <span class="inc qtybtn">+</span>
                                 </div>
 
                             </div>                            
@@ -116,9 +114,28 @@ $(function(){
 
             </div>
             
-        </div>
-        `)
-       
+        </div>`)
+        if(product_details.Status === "Available")
+            $(".availability").append("<span>In Stock</span>");
+        else
+             $(".availability").append("<span>Out of Stock</span>");
+        $('.pro-qty').prepend('<span class="dec qtybtn">-</span>');
+        $('.pro-qty').append('<span class="inc qtybtn">+</span>');
+        $('.qtybtn').on('click', function() {
+            var $button = $(this);
+            var oldValue = $button.parent().find('input').val();
+            if ($button.hasClass('inc')) {
+              var newVal = parseFloat(oldValue) + 1;
+            } else {
+               // Don't allow decrementing below zero
+              if (oldValue > 0) {
+                var newVal = parseFloat(oldValue) - 1;
+                } else {
+                newVal = 0;
+              }
+              }
+            $button.parent().find('input').val(newVal);
+        });  
             
         },
         error: function(jqXHR,textStatus,errorThrown){
@@ -131,20 +148,42 @@ $(function(){
     
     }
 
-$('.qtybtn').on('click', function() {
-    var $button = $(this);
-    var oldValue = $button.parent().find('input').val();
-    if ($button.hasClass('inc')) {
-      var newVal = parseFloat(oldValue) + 1;
-    } else {
-       // Don't allow decrementing below zero
-      if (oldValue > 0) {
-        var newVal = parseFloat(oldValue) - 1;
-        } else {
-        newVal = 0;
-      }
-      }
-    $button.parent().find('input').val(newVal);
-});  
+
+
+// DatabaseName = "cart"
+// version = 1
+
+// $(".add-to-cart").addEventListener("click",function(){
+//   let title = document.getElementById("bookTitle").value ;
+//   let SSN = document.getElementById("bookSn").value;
+//   let year = document.getElementById("bookYear").value;
+//   if(title && SSN && year){
+//     var request = window.indexedDB.open(DatabaseName);
+//     request.onsuccess = function(event){
+//              db = event.target.result;
+//             console.log("onsuccess ",db);
+//             var bookObjectStore = db.transaction("book", "readwrite").objectStore("book");
+            
+//                 bookObjectStore.add( { title: title, SSN: SSN , year: year });
+                
+//       };
+//     request.onupgradeneeded = function(event){
+//         var db = event.target.result;
+
+//          var objectStore = db.createObjectStore("book", { autoIncrement :true, keyPath: "ID" });
+//          objectStore.createIndex("SSN", "SSN", { unique: true });
+        
+
+//          console.log("hello");
+
+//  };
+//       request.onerror =function(event){
+//         console.log("Why didn't you allow my web app to use IndexedDB?!");
+//       };
+
     
+
+//   }
+ 
+// });
 });
