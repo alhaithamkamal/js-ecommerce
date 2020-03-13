@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*-----------------------------------------------------------------------------------
 
     Template Name: E&E - Electronics eCommerce Bootstrap4 HTML Template
@@ -56,6 +57,66 @@
 -----------------------------------------------------------------------------------*/
 /*----------------------------------------*/
 /*  01. Theme default CSS
+=======
+/*-----------------------------------------------------------------------------------
+
+    Template Name: E&E - Electronics eCommerce Bootstrap4 HTML Template
+    Version: 1.0
+
+-----------------------------------------------------------------------------------
+    
+    CSS INDEX
+    ===================
+	
+    01. Theme default CSS
+	02. Header
+        02.1 Header Top
+        02.2 Header Bottom
+    03. Category Menu Style
+        03.1 Header Category Style
+        03.2 Hero Side Category Style
+    04. Hero
+        04.1 Hero Slider One
+        04.2 Hero Slider Two
+        04.3 Hero Slider Three
+        04.4 Hero Slider Four
+        04.5 Hero Slider Five
+    05. Banner
+    06. Product Slider
+    07. Products
+        07.1 Shop Top Bar
+        07.2 Protuct Style One
+        07.3 Protuct Style Two
+        07.4 Protuct Style Three ( With Countdown )
+        07.5 Protuct Style List
+    08. Single Product
+    09. Offer Product
+    10. Shop Sidebar
+    11. Cart
+    12. Compare
+    13. Checkout
+    14. Feature
+    15. Blog
+    16. Blog Sidebar
+    17. Login & Register
+    18. Team
+	19. Faq
+    20. Terms & Conditions
+    21. Track Order
+    22. Store
+    23. Brands
+    24. Subscribe
+    25. About
+    26. Testimonial
+    27. Footer
+        27.1 Footer Top
+        27.2 Footer Bottom
+    28. Contact
+
+-----------------------------------------------------------------------------------*/
+/*----------------------------------------*/
+/*  01. Theme default CSS
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 /*----------------------------------------*/
 /*-- Google Font --*/
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Oswald:200,300,400,500,600,700");
@@ -78,6 +139,10 @@ body {
   color: #444444;
   position: relative; }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 h1, h2, h3, h4, h5, h6 {
   color: #202020;
   font-family: "Open Sans", sans-serif;
@@ -142,8 +207,13 @@ ul {
   margin: 0;
   padding: 0; }
 
+<<<<<<< HEAD
 /*-- 
     - Common Classes
+=======
+/*-- 
+    - Common Classes
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .fix {
   overflow: hidden; }
@@ -238,8 +308,13 @@ ul {
     padding: 0 15px;
     width: 320px; } }
 
+<<<<<<< HEAD
 /*-- 
     - Margin & Padding
+=======
+/*-- 
+    - Margin & Padding
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Margin Top --*/
 .mt-5 {
@@ -258,7 +333,12 @@ ul {
   margin-top: 25px; }
 
 .mt-30 {
+<<<<<<< HEAD
   margin-top: 30px; }
+=======
+  margin-top: 30px;
+  margin-bottom:  30px; }
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 
 .mt-35 {
   margin-top: 35px; }
@@ -1889,8 +1969,13 @@ ul {
   .pr-sm-200 {
     padding-right: 200px; } }
 
+<<<<<<< HEAD
 /*-- 
     - Input Placeholder
+=======
+/*-- 
+    - Input Placeholder
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 input:-moz-placeholder, textarea:-moz-placeholder {
   opacity: 1;
@@ -1908,8 +1993,13 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)"; }
 
+<<<<<<< HEAD
 /*--
     - Custom Row
+=======
+/*--
+    - Custom Row
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 ------------------------------------------*/
 .row-0 {
   margin-left: -0px;
@@ -2120,13 +2210,22 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
         padding-left: 15px !important;
         padding-right: 15px !important; } }
 
+<<<<<<< HEAD
 /*-- 
     Scroll Up 
+=======
+/*-- 
+    Scroll Up 
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 #scrollUp {
   width: 40px;
   height: 40px;
+<<<<<<< HEAD
   background-color: #f5d730;
+=======
+  background-color: #00bcd4;
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
   border: 3px solid #eeeeee;
   color: #202020;
   right: 20px;
@@ -2152,8 +2251,13 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite; }
 
+<<<<<<< HEAD
 /*--
     - Background Color
+=======
+/*--
+    - Background Color
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 ------------------------------------------*/
 .bg-gray {
   background-color: #f6f7f8; }
@@ -2166,8 +2270,13 @@ img.mfp-img {
   padding: 0;
   margin: 40px auto; }
 
+<<<<<<< HEAD
 /*--
     - Social Color
+=======
+/*--
+    - Social Color
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 ------------------------------------------*/
 .facebook {
   background-color: #3B5997;
@@ -2304,8 +2413,13 @@ img.mfp-img {
       opacity: 1;
       overflow: visible; }
 
+<<<<<<< HEAD
 /*--
     - Product Full Width
+=======
+/*--
+    - Product Full Width
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 ------------------------------------------*/
 .full-width-product-wrap > [class*="col-"]:nth-child(1), .full-width-product-wrap > [class*="col"]:nth-child(1) {
   -webkit-box-flex: 1;
@@ -2436,8 +2550,13 @@ img.mfp-img {
           float: right;
           margin-left: 10px; }
 
+<<<<<<< HEAD
 /*--
     - Page Banner Section
+=======
+/*--
+    - Page Banner Section
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 ------------------------------------------*/
 .page-banner-section {
   background-color: #fefcef; }
@@ -2551,8 +2670,13 @@ img.mfp-img {
   font-size: 18px;
   color: #202020; }
 
+<<<<<<< HEAD
 /*--
     - Button
+=======
+/*--
+    - Button
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 ------------------------------------------*/
 .btn {
   border: 1px solid #626262;
@@ -2651,8 +2775,13 @@ img.mfp-img {
       padding: 4px 15px;
       margin-top: 15px; } }
 
+<<<<<<< HEAD
 /*--
     - Blockquote
+=======
+/*--
+    - Blockquote
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 ------------------------------------------*/
 .blockquote {
   max-width: 800px;
@@ -2822,8 +2951,13 @@ img.mfp-img {
 .theme-dark .customizer-links a h4 {
   color: #202020; }
 
+<<<<<<< HEAD
 /*--
     -- Tab Style
+=======
+/*--
+    -- Tab Style
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Tab One --*/
 .nav-tabs-one {
@@ -3172,11 +3306,19 @@ img.mfp-img {
         .nav-tabs-eight li a {
           padding: 6px 15px; } }
 
+<<<<<<< HEAD
 /*---------------------------------------
     Section Title
 -----------------------------------------*/
 /*--
     -- Seation Title One
+=======
+/*---------------------------------------
+    Section Title
+-----------------------------------------*/
+/*--
+    -- Seation Title One
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .section-title-one {
   position: relative;
@@ -3252,8 +3394,13 @@ img.mfp-img {
         padding: 0;
         background-color: transparent; } }
 
+<<<<<<< HEAD
 /*---------------------------------------
     02. Header
+=======
+/*---------------------------------------
+    02. Header
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .header-section {
   width: 100%;
@@ -3272,8 +3419,13 @@ img.mfp-img {
   width: 100%;
   z-index: 999; }
 
+<<<<<<< HEAD
 /*--
     02.1 Header Top
+=======
+/*--
+    02.1 Header Top
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .header-top .justify-content-between > [class*="col"] {
   -webkit-box-flex: 0;
@@ -3281,7 +3433,11 @@ img.mfp-img {
   flex-grow: 0;
   -ms-flex-preferred-size: auto;
   flex-basis: auto;
+<<<<<<< HEAD
   width: auto; }
+=======
+  width: 100%; }
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 
 .header-top .justify-content-center > [class*="col"]:first-child {
   -webkit-box-pack: start;
@@ -3480,7 +3636,11 @@ img.mfp-img {
     font-size: 12px;
     font-weight: 600;
     color: #202020;
+<<<<<<< HEAD
     background-color: #f5d730;
+=======
+    background-color: #00bcd4;
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
     display: block;
     overflow: hidden;
     text-align: center;
@@ -3866,7 +4026,11 @@ img.mfp-img {
     .header-advance-search .submit button {
       border-top-right-radius: 50px;
       border-bottom-right-radius: 50px;
+<<<<<<< HEAD
       background-color: #f5d730;
+=======
+      background-color: #00bcd4;
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
       color: #202020;
       border: none;
       width: 70px;
@@ -3918,8 +4082,13 @@ img.mfp-img {
         .header-call-us h4 span a:focus, .header-call-us h4 span a:hover {
           color: #202020; }
 
+<<<<<<< HEAD
 /*--
     02.2 Header Bottom
+=======
+/*--
+    02.2 Header Bottom
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .header-bottom .justify-content-between > [class*="col"] {
   -webkit-box-flex: 0;
@@ -4338,11 +4507,19 @@ img.mfp-img {
                     .mobile-menu .mean-bar .mean-nav > ul li .sub-menu li .sub-menu .sub-menu li a.mean-expand, .mobile-menu .mean-bar .mean-nav > ul li .sub-menu li .sub-menu ul li a.mean-expand, .mobile-menu .mean-bar .mean-nav > ul li .sub-menu li ul .sub-menu li a.mean-expand, .mobile-menu .mean-bar .mean-nav > ul li .sub-menu li ul ul li a.mean-expand, .mobile-menu .mean-bar .mean-nav > ul li .mega-menu li .sub-menu .sub-menu li a.mean-expand, .mobile-menu .mean-bar .mean-nav > ul li .mega-menu li .sub-menu ul li a.mean-expand, .mobile-menu .mean-bar .mean-nav > ul li .mega-menu li ul .sub-menu li a.mean-expand, .mobile-menu .mean-bar .mean-nav > ul li .mega-menu li ul ul li a.mean-expand, .mobile-menu .mean-bar .mean-nav > ul li ul li .sub-menu .sub-menu li a.mean-expand, .mobile-menu .mean-bar .mean-nav > ul li ul li .sub-menu ul li a.mean-expand, .mobile-menu .mean-bar .mean-nav > ul li ul li ul .sub-menu li a.mean-expand, .mobile-menu .mean-bar .mean-nav > ul li ul li ul ul li a.mean-expand {
                       border: 1px solid #eeeeee; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     03. Category Menu Style
 -----------------------------------------*/
 /*--
     03.1 Header Category Style
+=======
+/*---------------------------------------
+    03. Category Menu Style
+-----------------------------------------*/
+/*--
+    03.1 Header Category Style
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .header-category-section {
   z-index: 999; }
@@ -4467,8 +4644,13 @@ img.mfp-img {
               padding: 8px 25px;
               color: #606060; } }
 
+<<<<<<< HEAD
 /*--
     03.2 Hero Side Category Style
+=======
+/*--
+    03.2 Hero Side Category Style
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .hero-side-category {
   background-color: #f6f7f8;
@@ -4770,11 +4952,19 @@ img.mfp-img {
         .category-mega-menu > li.add a img {
           width: 100%; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     04. Hero
 -----------------------------------------*/
 /*--
     04.1 Hero Slider One
+=======
+/*---------------------------------------
+    04. Hero
+-----------------------------------------*/
+/*--
+    04.1 Hero Slider One
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Hero Slider --*/
 .hero-slider-one {
@@ -5028,8 +5218,13 @@ img.mfp-img {
       -webkit-animation-delay: 3s;
       animation-delay: 3s; }
 
+<<<<<<< HEAD
 /*--
     04.2 Hero Slider Two
+=======
+/*--
+    04.2 Hero Slider Two
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Hero Slider --*/
 .hero-slider-two {
@@ -5329,8 +5524,13 @@ img.mfp-img {
       -webkit-animation-delay: 3s;
       animation-delay: 3s; }
 
+<<<<<<< HEAD
 /*--
     04.3 Hero Slider Three
+=======
+/*--
+    04.3 Hero Slider Three
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Hero Slider --*/
 .hero-slider-three {
@@ -5623,8 +5823,13 @@ img.mfp-img {
       -webkit-animation-delay: 3s;
       animation-delay: 3s; }
 
+<<<<<<< HEAD
 /*--
     04.4 Hero Slider Four
+=======
+/*--
+    04.4 Hero Slider Four
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Hero Slider --*/
 .hero-slider-four {
@@ -5982,8 +6187,13 @@ img.mfp-img {
       -webkit-animation-delay: 3s;
       animation-delay: 3s; }
 
+<<<<<<< HEAD
 /*--
     04.5 Hero Slider Five
+=======
+/*--
+    04.5 Hero Slider Five
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Hero Slider --*/
 .hero-slider-five {
@@ -6304,8 +6514,13 @@ img.mfp-img {
       -webkit-animation-delay: 3s;
       animation-delay: 3s; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     05. Banner
+=======
+/*---------------------------------------
+    05. Banner
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Banner --*/
 .banner a {
@@ -6365,8 +6580,13 @@ img.mfp-img {
     .hero-banner {
       width: 100%; } }
 
+<<<<<<< HEAD
 /*---------------------------------------
     06. Product Slider
+=======
+/*---------------------------------------
+    06. Product Slider
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .product-slider-wrap {
   overflow: hidden; }
@@ -6668,8 +6888,13 @@ img.mfp-img {
           .product-slider-arrow-two .product-slider:hover .slick-arrow.slick-next {
             right: 15px; } }
 
+<<<<<<< HEAD
 /*---------------------------------------
     07. Products
+=======
+/*---------------------------------------
+    07. Products
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Product Tab Filter --*/
 .product-tab-filter {
@@ -6750,8 +6975,13 @@ img.mfp-img {
     .product-tab-list li a.active {
       color: #202020; }
 
+<<<<<<< HEAD
 /*----
     07.1 Shop Top Bar
+=======
+/*----
+    07.1 Shop Top Bar
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .shop-top-bar {
   float: left;
@@ -6927,8 +7157,13 @@ img.mfp-img {
 .shop-product-wrap.grid .ee-product-list {
   display: none; }
 
+<<<<<<< HEAD
 /*----
     07.2 Protuct Style One
+=======
+/*----
+    07.2 Protuct Style One
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .ee-product {
   -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -6952,11 +7187,23 @@ img.mfp-img {
       .ee-product .image .label.new {
         color: #ff0000; }
     .ee-product .image .img {
+<<<<<<< HEAD
       display: block;
       background-color: #f6f7f8; }
       .ee-product .image .img img {
         display: block;
         width: 100%; }
+=======
+      height: 260px;
+      display: block;
+      background-color: #f6f7f8;
+      width: 230px;
+       }
+      .ee-product .image .img img {
+        display: block;
+        width: 100%;
+        height: 100%; }
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
     .ee-product .image .wishlist-compare {
       position: absolute;
       top: 20px;
@@ -7040,7 +7287,11 @@ img.mfp-img {
       -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
       transform: translateX(-50%);
+<<<<<<< HEAD
       background-color: #f5d730;
+=======
+      background-color: #00bcd4;
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
       color: #202020;
       border-radius: 50px;
       display: block;
@@ -7187,8 +7438,13 @@ img.mfp-img {
       visibility: visible;
       bottom: 20px; }
 
+<<<<<<< HEAD
 /*----
     07.3 Protuct Style Two
+=======
+/*----
+    07.3 Protuct Style Two
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .ee-product-two {
   -webkit-transition: all 0.3s ease 0s;
@@ -7485,8 +7741,13 @@ img.mfp-img {
       -o-transition-delay: 0.07s;
       transition-delay: 0.07s; }
 
+<<<<<<< HEAD
 /*----
     07.4 Protuct Style Three ( With Countdown )
+=======
+/*----
+    07.4 Protuct Style Three ( With Countdown )
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .ee-product-three {
   background-color: #ffffff;
@@ -7775,8 +8036,13 @@ img.mfp-img {
       -ms-transform: translateX(-50%) translateY(-50%);
       transform: translateX(-50%) translateY(-50%); }
 
+<<<<<<< HEAD
 /*----
     07.5 Protuct Style List
+=======
+/*----
+    07.5 Protuct Style List
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .ee-product-list {
   background-color: #fafafa;
@@ -8125,8 +8391,13 @@ img.mfp-img {
       width: 100%;
       margin-top: 30px; } }
 
+<<<<<<< HEAD
 /*---------------------------------------
     08. Single Product
+=======
+/*---------------------------------------
+    08. Single Product
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Single Product Image --*/
 .single-product-image {
@@ -8471,7 +8742,11 @@ img.mfp-img {
       margin-bottom: 33px; }
       .single-product-content .single-product-description .actions .add-to-cart {
         position: relative;
+<<<<<<< HEAD
         background-color: #f5d730;
+=======
+        background-color: #00bcd4;
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
         color: #202020;
         border-radius: 50px;
         display: block;
@@ -8880,8 +9155,13 @@ img.mfp-img {
   height: 80px;
   resize: none; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     09. Offer Product
+=======
+/*---------------------------------------
+    09. Offer Product
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Offer Product Wrap --*/
 .offer-product-wrap > [class*="col"] {
@@ -9017,8 +9297,13 @@ img.mfp-img {
   .offer-time-wrap.dark .countdown .cdown p {
     color: #444444; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     10. Shop Sidebar
+=======
+/*---------------------------------------
+    10. Shop Sidebar
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .shop-sidebar {
   background-color: #f6f7f8; }
@@ -9157,8 +9442,13 @@ img.mfp-img {
       background-color: #f5d730;
       border-color: #f5d730; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     11. Cart
+=======
+/*---------------------------------------
+    11. Cart
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Cart Table --*/
 .cart-table .table {
@@ -9450,8 +9740,13 @@ img.mfp-img {
         .cart-summary .cart-summary-button button {
           width: 130px; } }
 
+<<<<<<< HEAD
 /*---------------------------------------
     12. Compare
+=======
+/*---------------------------------------
+    12. Compare
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Compare Table --*/
 .compare-table .table tbody tr:first-child {
@@ -9567,8 +9862,13 @@ img.mfp-img {
     color: #444444;
     font-size: 14px; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     13. Checkout
+=======
+/*---------------------------------------
+    13. Checkout
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Checkout Title --*/
 .checkout-title {
@@ -9835,8 +10135,13 @@ img.mfp-img {
   color: #202020;
   background-color: #f5d730; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     14. Feature
+=======
+/*---------------------------------------
+    14. Feature
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Single Feature --*/
 .feature {
@@ -9953,8 +10258,13 @@ img.mfp-img {
   .feature-two:hover .feature-wrap .icon {
     padding-top: 32px; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     15. Blog
+=======
+/*---------------------------------------
+    15. Blog
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Blog --*/
 .ee-blog {
@@ -10295,8 +10605,13 @@ img.mfp-img {
   resize: none;
   height: 150px; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     16. Blog Sidebar
+=======
+/*---------------------------------------
+    16. Blog Sidebar
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .blog-sidebar {
   background-color: #f6f7f8; }
@@ -10393,8 +10708,13 @@ img.mfp-img {
       z-index: 18px;
       color: #444444; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     17. Login & Register
+=======
+/*---------------------------------------
+    17. Login & Register
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Login --*/
 .ee-login h3 {
@@ -10672,8 +10992,13 @@ img.mfp-img {
     text-transform: uppercase;
     line-height: 16px; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     18. Team
+=======
+/*---------------------------------------
+    18. Team
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Team One --*/
 .single-team {
@@ -10769,8 +11094,13 @@ img.mfp-img {
     line-height: 18px;
     text-transform: capitalize; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     19. Faq
+=======
+/*---------------------------------------
+    19. Faq
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Faq Wrap --*/
 .faq-wrap {
@@ -10811,8 +11141,13 @@ img.mfp-img {
     .ask-question a:hover {
       color: #f5d730; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     20. Terms & Conditions
+=======
+/*---------------------------------------
+    20. Terms & Conditions
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .terms-conditions-wrap h2 {
   font-size: 30px;
@@ -10850,8 +11185,13 @@ img.mfp-img {
     line-height: 23px;
     color: #444444; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     21. Track Order
+=======
+/*---------------------------------------
+    21. Track Order
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Track Order Title --*/
 .track-order-title h2 {
@@ -10900,8 +11240,13 @@ img.mfp-img {
     font-weight: 700;
     margin-bottom: 0; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     22. Store
+=======
+/*---------------------------------------
+    22. Store
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .single-store h3 {
   font-size: 24px;
@@ -10921,8 +11266,13 @@ img.mfp-img {
   .single-store p a:hover {
     color: #202020; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     23. Brands
+=======
+/*---------------------------------------
+    23. Brands
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Brand Slider --*/
 .brand-slider {
@@ -10940,8 +11290,13 @@ img.mfp-img {
     display: inline-block;
     max-width: 100%; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     24. Subscribe
+=======
+/*---------------------------------------
+    24. Subscribe
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .subscribe-section {
   background-repeat: no-repeat;
@@ -11170,8 +11525,13 @@ img.mfp-img {
     .popup-subscribe-form button.button {
       margin-top: 20px; } }
 
+<<<<<<< HEAD
 /*---------------------------------------
     25. About
+=======
+/*---------------------------------------
+    25. About
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- About Image --*/
 .about-image img {
@@ -11297,8 +11657,13 @@ img.mfp-img {
       .feature-image img {
         margin-left: 0; } }
 
+<<<<<<< HEAD
 /*---------------------------------------
     26. Testimonial
+=======
+/*---------------------------------------
+    26. Testimonial
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .testimonial-slider .slick-arrow {
   width: 34px;
@@ -11496,11 +11861,19 @@ img.mfp-img {
     font-style: italic;
     line-height: 18px; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     27. Footer
 -----------------------------------------*/
 /*----
     27.1 Footer Top
+=======
+/*---------------------------------------
+    27. Footer
+-----------------------------------------*/
+/*----
+    27.1 Footer Top
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .five-column-widget > [class*="col"], .five-column-widget > [class*="col-"] {
   width: 20%;
@@ -11680,8 +12053,13 @@ ul.link-widget li {
     color: #1da1f3;
     display: block; }
 
+<<<<<<< HEAD
 /*----
     27.2 Footer Bottom
+=======
+/*----
+    27.2 Footer Bottom
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 .footer-bottom-section {
   border-top: 1px solid #eae9e9;
@@ -11717,8 +12095,13 @@ ul.link-widget li {
   .footer-payments-image img {
     max-width: 100%; }
 
+<<<<<<< HEAD
 /*---------------------------------------
     28. Contact
+=======
+/*---------------------------------------
+    28. Contact
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
 -----------------------------------------*/
 /*-- Contact Page Title --*/
 .contact-page-title h1 {
@@ -11799,3 +12182,33 @@ ul.link-widget li {
   height: 120px;
   resize: none;
   background-color: transparent; }
+<<<<<<< HEAD
+=======
+
+ #loader { 
+            border: 12px solid #f3f3f3; 
+            border-radius: 50%; 
+            border-top: 12px solid #444444; 
+            width: 70px; 
+            height: 70px; 
+            animation: spin 1s linear infinite; 
+        } 
+          
+        @keyframes spin { 
+            100% { 
+                transform: rotate(360deg); 
+            } 
+        } 
+          
+        .center { 
+            position: absolute; 
+            top: 0; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            margin: auto; 
+        } 
+
+
+        
+>>>>>>> 947ac59c135a5785bc18429722267946812736b7
