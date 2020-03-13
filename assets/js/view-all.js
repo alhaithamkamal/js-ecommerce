@@ -94,8 +94,12 @@ function fetchProducts(url) {
             </div><!-- Product List End -->
         </div>`)
         });
-    })
-    .catch(err => {
+    
+    $(".add-to-cart").click(function(event){
+        addToCart(event);
+    });
+ updateMiniCart();
+    }).catch(err => {
         console.log(err);
     })
 }
