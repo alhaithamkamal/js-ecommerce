@@ -150,6 +150,7 @@ var request = indexedDB.open("MyDB",1);
   objectStore.getAll().onsuccess = function(event){
     const length =event.target.result.length; 
     var Total =0;
+    var TotalQuantity=0;
 for(var i=0;i<length;i++){
   var cartRow =cartRows[i];
   var priceElement = cartRow.getElementsByClassName('pro-price')[0];
@@ -158,11 +159,17 @@ for(var i=0;i<length;i++){
   // cartRow.getElementById(i)[0].innerText = '$' + (price*quantity);
   var quantity = quantityElement;
   Total = Total + (price * quantity);
+  TotalQuantity = TotalQuantity + parseInt(quantity);
   cartRow.getElementsByClassName('sub-Total')[0].innerText = '$' + (price * quantity);
-  console.log(quantityElement);
-}
-document.getElementsByClassName('cart-total')[0].innerText = '$' + Total;
+  console.log(Total);
+  console.log(TotalQuantity);
 
+}
+sessionStorage.setItem("QOrdered", TotalQuantity);
+cartQuantity = sessionStorage.getItem("QOrdered");
+console.log(cartQuantity);
+document.getElementsByClassName('cart-number')[0].innerText = cartQuantity;
+document.getElementsByClassName('cart-total')[0].innerText = '$' + Total;
   }}
 
 }
