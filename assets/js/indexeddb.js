@@ -25,13 +25,7 @@ function openDB(){
     }
 }
 function save_order(totalPrice) {
-<<<<<<< HEAD
     if (db instanceof IDBDatabase) {
-=======
-    console.log(totalPrice);
-    if (db instanceof IDBDatabase) {
-    console.log(totalPrice);
->>>>>>> 947ac59c135a5785bc18429722267946812736b7
         const tx = db.transaction(ORDERS_STORE_NAME, 'readwrite');
         const orderStore = tx.objectStore(ORDERS_STORE_NAME);
         orderStore.add({
@@ -40,7 +34,6 @@ function save_order(totalPrice) {
         });
     }
 }
-<<<<<<< HEAD
 function get_orders(totalPrice) {
     if (db instanceof IDBDatabase) {
         const tx = db.transaction(ORDERS_STORE_NAME, 'readwrite');
@@ -54,5 +47,3 @@ function get_orders(totalPrice) {
         })
     }
 }
-=======
->>>>>>> 947ac59c135a5785bc18429722267946812736b7
