@@ -14,11 +14,12 @@ function DisplayAll(){
         <a href="${event.target.result[i].proId}" class = "img"><img src="${event.target.result[i].ProductPicUrl}" alt="Product"></a></td>
         <td class="pro-title"><a href="#">${event.target.result[i].Name}</a></td>
         <td class="pro-price"><span>${event.target.result[i].Price}</span></td>
-        <td class="pro-quantity"><input class = "quan" type="number" id="${i}" name="quantity"  value = "1" min="1" max="${event.target.result[i].Quantity}" onclick="quantityChanged(${event.target.result[i].Quantity},${i});"></td>
+        <td class="pro-quantity"><input class = "quan" type="number" id="${i}" name="quantity"  value = "${event.target.result[i].QOrdered}" min="1" max="${event.target.result[i].Quantity}" onclick="quantityChanged(${event.target.result[i].Quantity},${i});"></td>
         <td class="pro-subtotal" id=${i}><span class="sub-Total">${event.target.result[i].Price}</span></td>
         <td class="pro-remove"><a href="#" onclick="removeCartItem();"><i class="fa fa-trash-o"></i></a></td>
         </tr>
       `);
+      console.log();
       $(mini).append(`
           <li class = "cart">
             <a class="image"><img src="${event.target.result[i].ProductPicUrl}" alt="Product"></a>
@@ -165,10 +166,7 @@ for(var i=0;i<length;i++){
   console.log(TotalQuantity);
 
 }
-sessionStorage.setItem("QOrdered", TotalQuantity);
-cartQuantity = sessionStorage.getItem("QOrdered");
-console.log(cartQuantity);
-document.getElementsByClassName('cart-number')[0].innerText = cartQuantity;
+document.getElementsByClassName('cart-number')[0].innerText = TotalQuantity;
 document.getElementsByClassName('cart-total')[0].innerText = '$' + Total;
   }}
 
