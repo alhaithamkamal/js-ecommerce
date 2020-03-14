@@ -257,24 +257,20 @@
                                 <div class="row">
                                     <div class="col-md-12 col-12 mb-25">
                                         <label for="name">Name*</label>
-                                        <input id="name" type="text" name="name" >
-                                        <div id="nameErr" class="text-danger"></div>
+                                        <input id="name" type="text" name="name" value="" required minlength="3" maxlength="50">
                                     </div>
                                     
                                     <div class="col-md-12 col-12 mb-25">
                                         <label for="email">Email*</label>
-                                        <input id="email" type="email" name="email" >
-                                        <div id="emailErr" class="text-danger"></div>
+                                        <input id="email" type="email" name="email" value="" required>
                                     </div>
                                     <div class="col-md-12 col-12 mb-25">
                                         <label for="subject">Subject*</label>
-                                        <input id="subject" type="text" name="subject" >
-                                        <div id="subjectErr" class="text-danger"></div>
+                                        <input id="subject" type="text" name="subject" required value="">
                                     </div>
                                     <div class="col-12 mb-25">
                                         <label for="message">Message*</label>
-                                        <textarea id="message" name="message" ></textarea>
-                                        <div id="messageErr" class="text-danger"></div>
+                                        <textarea id="message" name="message"></textarea>
                                     </div>
                                     <div class="col-12" id="msg">
                                         <input  type="submit" value="SEND NOW" name="submit">
