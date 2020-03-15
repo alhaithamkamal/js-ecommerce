@@ -1,7 +1,10 @@
 $(function(){
     const products_wrap = document.getElementById('products-wrap');
     const q = document.getElementById('q');
-    const params = {};
+    const params = {  
+        page : 1,
+        limit : $("#limit-select option:selected").val()
+    };
     let total_pages;
     fetchProducts();
     function fetchProducts(){
@@ -9,34 +12,34 @@ $(function(){
             url: "https://afternoon-falls-30227.herokuapp.com/api/v1/products",
             data: params,
             success: function(res){
+                res.page = params.page;
+                res.total_items = parseInt(res.total_items/params.limit);
+                total_pages = res.total_pages;
+                console.log(res)
                 let products = res.data;
-                params.page = res.page
-                total_pages = res.total_pages
-                console.log(params)
-                // console.log(total_pages)
                 $(".product-pages").html("<p>Pages "+res.page+" of "+res.total_pages+"</p>");
+              
 
-                // for(let i = parseInt((pages+page)/2);i>=page;i--)
-                // {
-                //     $("#back").after("<li  id="+i+"><a >"+i+"</a></li>");
-                
-                // } 
-                // for(let i = pages;i>0;i--)
-                // {
-                //      $("#"+i+"").on("click",function(){
-                //          for(let j= parseInt((pages+page)/2);j>=page;j--)
-                //         {
-                //             $("#"+j+"").remove();
+                for(let i = parseInt((res.total_pages)/3);i>0;i--)
+                {
+                    $("#back").after("<li  id="+i+"><a >"+i+"</a></li>");
+                    $("#"+i+"").on("click",function(){
+                        if($("#back").next().attr('id') == i)
+                            console.log("loglog")
+                        for(let j = parseInt((res.total_pages)/3);j>0;j--)
+                        {
+                            $("#"+j+"").remove();
                         
-                //         } 
-                //         page=i;
-                    
-                //         fetchProducts(url);
-                //         //console.log("page ",page);
+                        } 
+                        params.page=i;
+                        fetchProducts();
+                        console.log("page ",params.page);
                 
-                //     });
-                // }
-                // $("#"+page+"").addClass("active");
+                    });
+                
+                } 
+               
+                $("#"+res.page+"").addClass("active");
                 $(products_wrap).empty();
                 products.forEach(product => {
                     //console.log(product);
@@ -151,22 +154,22 @@ $(function(){
     });
     $("#back").on("click",function(){
         if(params.page > 1){
-            // for(let j= parseInt((pages+page)/2);j>=page;j--)
-            //     {
-            //         $("#"+j+"").remove();
+            for(let j= parseInt(total_pages/3);j>0;j--)
+                {
+                    $("#"+j+"").remove();
                    
-            //     }
+                }
             params.page--;
             fetchProducts();
         }
     });
     $("#next").on("click",function(){
         if(params.page < total_pages){
-            // for(let j= parseInt((pages+page)/2);j>=page;j--)
-            //     {
-            //         $("#"+j+"").remove();
+            for(let j= parseInt(total_pages/3);j>0;j--)
+                {
+                    $("#"+j+"").remove();
                    
-            //     } 
+                } 
             params.page++;
             fetchProducts();
         }
