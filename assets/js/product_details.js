@@ -9,8 +9,6 @@ $(function(){
     let id=urlParams.get('id');    
     console.log(id);
     fetchData();
-
-
     function fetchData(){
         $.ajax({
         url: `https://afternoon-falls-30227.herokuapp.com/api/v1/products/${id}`,
@@ -21,16 +19,16 @@ $(function(){
         console.log("details :",product_details);
 
         
-        $("#product_details").append(`<div class="row mb-90">
+        $("#product_details").append(`<div class="row mb-90" id="content">
                     
             <div class="col-lg-6 col-12 mb-50">
 
                 <!-- Image -->
-                <div class="single-product-image thumb-right">
+                <div class="single-product-image">
 
-                    <div class="tab-content">
+                    <div class="tab-content" style="padding-left: 30px;">
                         <div id="single-image-1" class="tab-pane fade show active big-image-slider">
-                            <div class="big-image"><img src="${product_details.ProductPicUrl}" alt="Big Image"><a href="${product_details.ProductPicUrl}"></a></div>
+                            <div class="big-image"><img src="${product_details.ProductPicUrl}"  alt="Big Image"><a href="${product_details.ProductPicUrl}"></a></div>
                             
                         </div>
                     
@@ -42,7 +40,7 @@ $(function(){
 
             </div>
                     
-            <div class="col-lg-6 col-12 mb-50">
+            <div class="col-lg-6 col-12 mb-50" >
 
                 <!-- Content -->
                 <div class="single-product-content">
@@ -52,7 +50,7 @@ $(function(){
 
                         <div class="category-title">
                             <a href="#" class="cat">${product_details.Category}</a>
-                            <h5 class="title">${product_details.Name}</h5>
+                            <h2 class="title">${product_details.Name}</h2>
                         </div>
 
                         <h5 class="price">${product_details.CurrencyCode} ${product_details.Price}</h5>
@@ -66,11 +64,20 @@ $(function(){
                         <div class="desc">
                             <p>${product_details.Description}</p>
                         </div>
+                         <div class="right-content">
+                                <div class="specification">
+                                    <h3>Specifications</h3>
+                                    <ul style="padding-left: 30px;">
+                                        <li>Width: ${product_details.Width}${product_details.DimUnit}</li>
+                                        <li>Depth: ${product_details.Depth}${product_details.DimUnit}</li>
+                                        <li>Height: ${product_details.Height}${product_details.DimUnit}</li>
+                                        <li>Weight: ${product_details.WeightMeasure}${product_details.WeightUnit}</li>
+                                    </ul>
+                                </div>
+                                <span class="availability"> ${product_details.Status} : <span class="details_quantity">${product_details.Quantity}</span> 
+                                <span class="stock">In Stock</span> </span>
+                            </div>
                         
-                        <span class="availability">Availability:
-                           
-                       
-                         </span>
                         
                         <div class="quantity-colors">
                             
@@ -89,23 +96,12 @@ $(function(){
 
                         <div class="actions">
 
-                            <a href="#" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
+                            <a href="#" class="add-to-cart" style="background:#fefcef;"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
 
                             
 
                         </div>
-                        
-                       <!--  <div class="tags">
-                            
-                            <h5>Tags:</h5>
-                            <a href="#">Electronic</a>
-                            <a href="#">Smartphone</a>
-                            <a href="#">Phone</a>
-                            <a href="#">Charger</a>
-                            <a href="#">Powerbank</a>
-                            
-                        </div> -->
-                        
+                   
                         
 
                     </div>
@@ -115,10 +111,8 @@ $(function(){
             </div>
             
         </div>`)
-        if(product_details.Status === "Available")
-            $(".availability").append("<span>In Stock</span>");
-        else
-             $(".availability").append("<span>Out of Stock</span>");
+        
+
         $('.pro-qty').prepend('<span class="dec qtybtn">-</span>');
         $('.pro-qty').append('<span class="inc qtybtn">+</span>');
         $('.qtybtn').on('click', function() {
@@ -134,9 +128,48 @@ $(function(){
                 newVal = 0;
               }
               }
+
             $button.parent().find('input').val(newVal);
         });  
+
+        $('.add-to-cart').on("click",function(){
+            let quantity =$(".pro-qty").find('input').val();
+            console.log("quantity",quantity);
+                        console.log("quantity before",data.data.Quantity);
+
+            data.data.Quantity=data.data.Quantity-quantity;
             
+            console.log("quantity after",data.data.Quantity);
+
+            const params = {
+                quantity:quantity,
+                data:data
+            }
+            if(data.data.Quantity >= 0){
+                addToCartProduct(params);
+                toastr.success('this product added successfully', 'Success Alert', {timeOut: 5000});
+
+            }
+            else{
+                data.data.Quantity=data.data.Quantity+parseInt(quantity);
+                console.log(data.data.Quantity);
+                toastr.error('your order of product is greater than its quantity  ', 'Error Alert', {timeOut: 5000});
+            }
+           
+            
+            if(data.data.Quantity > 0){
+                $(".details_quantity").html(data.data.Quantity);
+                $(".stock").html("<span>In Stock</span>");
+            }
+            else{
+                $(".details_quantity").html("");
+                $(".stock").html("<span>Out of Stock</span>");
+                $(".quantity-colors").hide();
+                $(".actions").hide();
+            }
+            $(".pro-qty").find('input').val("1");
+        });
+           
         },
         error: function(jqXHR,textStatus,errorThrown){
             console.log(jqXHR);
@@ -149,41 +182,4 @@ $(function(){
     }
 
 
-
-// DatabaseName = "cart"
-// version = 1
-
-// $(".add-to-cart").addEventListener("click",function(){
-//   let title = document.getElementById("bookTitle").value ;
-//   let SSN = document.getElementById("bookSn").value;
-//   let year = document.getElementById("bookYear").value;
-//   if(title && SSN && year){
-//     var request = window.indexedDB.open(DatabaseName);
-//     request.onsuccess = function(event){
-//              db = event.target.result;
-//             console.log("onsuccess ",db);
-//             var bookObjectStore = db.transaction("book", "readwrite").objectStore("book");
-            
-//                 bookObjectStore.add( { title: title, SSN: SSN , year: year });
-                
-//       };
-//     request.onupgradeneeded = function(event){
-//         var db = event.target.result;
-
-//          var objectStore = db.createObjectStore("book", { autoIncrement :true, keyPath: "ID" });
-//          objectStore.createIndex("SSN", "SSN", { unique: true });
-        
-
-//          console.log("hello");
-
-//  };
-//       request.onerror =function(event){
-//         console.log("Why didn't you allow my web app to use IndexedDB?!");
-//       };
-
-    
-
-//   }
- 
-// });
 });

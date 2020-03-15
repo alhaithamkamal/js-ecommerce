@@ -2442,7 +2442,7 @@ img.mfp-img {
     - Page Banner Section
 ------------------------------------------*/
 .page-banner-section {
-  background-color: #fefcef; }
+  background-color: #7fbad7; }
 
 /*-- Page Banner Wrap --*/
 @media only screen and (max-width: 767px) {
@@ -2461,7 +2461,7 @@ img.mfp-img {
 
 /*-- Page Banner --*/
 .page-banner {
-  background-color: #fefcef;
+  background-color: #7fbad7;
   padding: 30px;
   text-align: center; }
   @media only screen and (min-width: 1200px) and (max-width: 1599px) {
@@ -3475,7 +3475,7 @@ img.mfp-img {
     @media only screen and (max-width: 479px) {
       .header-shop-links a i {
         font-size: 20px; } }
-  .header-shop-links a .number {
+  .header-shop-links a .cart-number {
     width: 20px;
     height: 20px;
     border-radius: 50px;
@@ -3491,7 +3491,7 @@ img.mfp-img {
     position: relative;
     left: -7px; }
     @media only screen and (max-width: 479px) {
-      .header-shop-links a .number {
+      .header-shop-links a .cart-number {
         width: 16px;
         height: 16px;
         margin-top: 7px;
@@ -3502,7 +3502,7 @@ img.mfp-img {
     @media only screen and (max-width: 479px) {
       .header-shop-links a.header-wishlist {
         margin-right: 3px; } }
-  .header-shop-links a.header-cart .number {
+  .header-shop-links a.header-cart .cart-number {
     left: 0; }
 
 /*-- Mini Cart Wrap --*/
@@ -6759,7 +6759,7 @@ img.mfp-img {
   float: left;
   width: 100%;
   padding: 13px 30px;
-  background-color: #fefcef; }
+  background-color: #7fbad7; }
   @media only screen and (max-width: 479px) {
     .shop-top-bar {
       padding: 13px 20px; } }
@@ -9168,13 +9168,13 @@ img.mfp-img {
 -----------------------------------------*/
 /*-- Cart Table --*/
 .cart-table .table {
-  border-bottom: 8px solid #fefcef;
+  border-bottom: 8px solid #7fbad7;
   margin: 0; }
   @media only screen and (max-width: 767px) {
     .cart-table .table {
-      border-top: 8px solid #fefcef; } }
+      border-top: 8px solid #7fbad7; } }
   .cart-table .table thead {
-    background-color: #fefcef; }
+    background-color: #7fbad7; }
     @media only screen and (max-width: 767px) {
       .cart-table .table thead {
         display: none; } }
@@ -11805,3 +11805,9 @@ ul.link-widget li {
   height: 120px;
   resize: none;
   background-color: transparent; }
+ div #content{
+  padding-top:40px;
+  padding-right:40px;
+  background: #7fbad7;
+  box-shadow: 17px 17px 10px grey;
+  }
