@@ -1,42 +1,50 @@
 $(function(){
     const products_wrap = document.getElementById('products-wrap');
     const q = document.getElementById('q');
-    const params = {};
+    const params = {  
+        page : 1,
+        limit : $("#limit-select option:selected").val()
+    };
     let total_pages;
+    var start =0;
     fetchProducts();
     function fetchProducts(){
         $.ajax({
             url: "https://afternoon-falls-30227.herokuapp.com/api/v1/products",
             data: params,
             success: function(res){
+                res.page = params.page;
+                res.total_items = parseInt(res.total_items/params.limit);
+                total_pages = res.total_pages;
+                console.log(res)
                 let products = res.data;
-                params.page = res.page
-                total_pages = res.total_pages
-                console.log(params)
-                // console.log(total_pages)
                 $(".product-pages").html("<p>Pages "+res.page+" of "+res.total_pages+"</p>");
+                
 
-                // for(let i = parseInt((pages+page)/2);i>=page;i--)
-                // {
-                //     $("#back").after("<li  id="+i+"><a >"+i+"</a></li>");
+                for(let i = (parseInt((res.total_pages)/3)+start);i>start;i--)
+                {
+                    $("#back").after("<li  id="+i+"><a >"+i+"</a></li>");
+                    $("#"+i+"").on("click",function(){
+                        removePagination(start,total_pages);
+                        console.log("back ",$("#back").next().attr('id')); 
+                        if($("#back").next().attr('id') == i && i != 1 ){
+                             console.log("loglog")
+                            start--;
+                        }
+                        else if($("#next").prev().attr('id') == i && i != total_pages){
+                            console.log("loglog")
+                            start++;
+                        }
+                        console.log("start ",start);
+                        params.page=i;
+                        fetchProducts();
+                        console.log("page ",params.page);
                 
-                // } 
-                // for(let i = pages;i>0;i--)
-                // {
-                //      $("#"+i+"").on("click",function(){
-                //          for(let j= parseInt((pages+page)/2);j>=page;j--)
-                //         {
-                //             $("#"+j+"").remove();
-                        
-                //         } 
-                //         page=i;
-                    
-                //         fetchProducts(url);
-                //         //console.log("page ",page);
+                    });
                 
-                //     });
-                // }
-                // $("#"+page+"").addClass("active");
+                } 
+               
+                $("#"+res.page+"").addClass("active");
                 $(products_wrap).empty();
                 products.forEach(product => {
                     //console.log(product);
@@ -120,10 +128,12 @@ $(function(){
                     fetch_products_by_category(event.target.text)
                 })
                 
-                $(".add-to-cart").click(function(){
-                    toastr.success('We do have the Kapua suite available.', 'Success Alert', {timeOut: 5000})
+            $(".add-to-cart").click(function(event){
+                    toastr.success('We do have the Kapua suite available.', 'Success Alert', {timeOut: 5000});
+                        addToCart(event);
                 });
-            },
+             updateMiniCart();
+         },
             error: function(jqXHR,textStatus,errorThrown){
                 console.log(jqXHR);
                 console.log(textStatus);
@@ -139,36 +149,23 @@ $(function(){
         else
             fetch_products_by_search_and_category(cat, q.value)
     })
-    $("select#limit-select").change(function(){
-        params.limit = $(this).children("option:selected").val();
-        // limit = $(this).children("option:selected").val();
-        //  for(let j= parseInt((pages+page)/2);j>=page;j--)
-        //         {
-        //             $("#"+j+"").remove();
-                   
-        //         }
-        fetchProducts();
-    });
+   
     $("#back").on("click",function(){
         if(params.page > 1){
-            // for(let j= parseInt((pages+page)/2);j>=page;j--)
-            //     {
-            //         $("#"+j+"").remove();
-                   
-            //     }
+            removePagination(start,total_pages); 
             params.page--;
             fetchProducts();
+        }else{
+            toastr.info('It is the first page.', 'Info', {timeOut: 5000})
         }
     });
     $("#next").on("click",function(){
         if(params.page < total_pages){
-            // for(let j= parseInt((pages+page)/2);j>=page;j--)
-            //     {
-            //         $("#"+j+"").remove();
-                   
-            //     } 
+            removePagination(start,total_pages); 
             params.page++;
             fetchProducts();
+        }else{
+            toastr.info('It is the last page.', 'Info', {timeOut: 5000})
         }
     });
     
@@ -187,5 +184,13 @@ $(function(){
         params.category = category;
         params.q = q;
         fetchProducts();
+    }
+    function removePagination(start,end){
+        for(let j= (parseInt(end/3)+start);j>start;j--)
+        {
+            $("#"+j+"").remove();
+           
+        }
+
     }
 });

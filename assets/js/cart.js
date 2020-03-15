@@ -1,9 +1,59 @@
-var db;
-function DisplayAll(){
-  var request = indexedDB.open("MyDB",1);
-  request.onsuccess= function(event){
-  db = event.target.result;
-  var objectStore = db.transaction("products","readwrite").objectStore("products");
+const DB_NAME = 'MyDB';
+const DB_V = 3;
+var dbase;
+const checkout = document.getElementById('checkout');
+
+if ('indexedDB' in window) {
+  openDB();
+}
+function openDB(){
+  const dbReq = indexedDB.open(DB_NAME, DB_V);
+  
+  dbReq.onerror = (ev) => {
+      console.error('onerror', ev.target.errorCode);
+  };
+
+  dbReq.onupgradeneeded = (ev) => {
+      const dbase = ev.target.result;
+      if (!dbase.objectStoreNames.contains('products')) {
+        booksStore = dbase.createObjectStore('products', { keyPath: 'proId' });
+      }
+      if (!dbase.objectStoreNames.contains('orders')) {
+        orderStore = dbase.createObjectStore('orders', { keyPath: 'num', autoIncrement: true });
+    }
+  }
+
+  dbReq.onsuccess = (ev) => {
+    dbase = ev.target.result;
+    displayAll();
+  }
+}
+function save_order(totalPrice) {
+  if (dbase instanceof IDBDatabase) {
+      const tx = dbase.transaction('orders', 'readwrite');
+      const orderStore = tx.objectStore('orders');
+      orderStore.add({
+          total_price: totalPrice,
+          date: new Date(),
+      });
+  }
+}
+checkout.onclick = (e) => {
+  e.preventDefault();
+  let total_price = 0
+  var objectStore = dbase.transaction("products","readwrite").objectStore("products");
+  objectStore.getAll().onsuccess = function(event){
+    for(let i=0;j=event.target.result.length,i<j;i++){
+      let price = event.target.result[i].Price
+      let quantity = event.target.result[i].QOrdered
+      total_price += (price * quantity)
+    }
+    save_order(total_price)
+  }
+}
+function displayAll(){  
+  if (dbase instanceof IDBDatabase) {
+  var objectStore = dbase.transaction("products","readwrite").objectStore("products");
   objectStore.getAll().onsuccess = function(event){
   const pro = document.getElementsByTagName('tbody');
   const mini = document.getElementsByClassName('mini-cart-products');
@@ -19,7 +69,6 @@ function DisplayAll(){
         <td class="pro-remove"><a href="#" onclick="removeCartItem();"><i class="fa fa-trash-o"></i></a></td>
         </tr>
       `);
-      console.log();
       $(mini).append(`
           <li class = "cart">
             <a class="image"><img src="${event.target.result[i].ProductPicUrl}" alt="Product"></a>
@@ -31,9 +80,8 @@ function DisplayAll(){
             <button class="remove" onclick="removeCartItem();"><i class="fa fa-trash-o"></i></button>
         </li>
         `);
-      console.log(event.target.result[i].ProductPicUrl);
+      // console.log(event.target.result[i].ProductPicUrl);
     }}}
-    // updateCartTotal(); 
 }
 
 function addToCart(event){
@@ -55,24 +103,14 @@ function addToCart(event){
       const cat = products.Category;
       const quantity = products.Quantity;
       const iniQuantity = 1;
+      const Odate = new Date();
       console.log(proId , title , price , imageSrc , cat , quantity , iniQuantity);
-      var request = indexedDB.open("MyDB",1);
-      request.onupgradeneeded = function(event) {
-            var db = event.target.result;
-            var objectStore = db.createObjectStore("products", {keyPath: "proId"});
-            objectStore.createIndex("Name", "Name", { unique: true });
-            objectStore.createIndex("Price", "Price", { unique: false });
-            objectStore.createIndex("ProductPicUrl", "ProductPicUrl", { unique: false });
-            objectStore.createIndex("Category", "Category", { unique: false });
-            objectStore.createIndex("Quantity", "Quantity", { unique: false });
-            objectStore.createIndex("QOrdered", "QOrdered", { unique: false });
-
-      };
-      request.onsuccess = function(event) {
-      db = event.target.result; 
-      var Products = db.transaction("products", "readwrite").objectStore("products");
-      Products.add({ proId : proId , Name : title , Price : price , ProductPicUrl : imageSrc , Category : cat , Quantity : quantity , QOrdered : iniQuantity});
-      };
+      if (dbase instanceof IDBDatabase) {        
+      var Products = dbase.transaction("products", "readwrite").objectStore("products");
+      Products.add({ proId : proId , Name : title , Price : price , ProductPicUrl : imageSrc , Category : cat , Quantity : quantity , QOrdered : iniQuantity , OrderDate : Odate});
+      }
+      updateCartTotal();
+      updateMiniCart();
     });
 }
 
@@ -83,15 +121,16 @@ function quantityChanged(max,id){
   const item = cartRows.getElementsByClassName("img")[0].href;
   var proId = item.split('/');
   console.log(cartRows , proId[8]);
-  var request = indexedDB.open("MyDB",1);
-      var objectStore = db.transaction("products", "readwrite").objectStore("products");
+  if (dbase instanceof IDBDatabase) {
+      var objectStore = dbase.transaction("products", "readwrite").objectStore("products");
       var TitleRequest = objectStore.get(proId[8]);
       TitleRequest.onsuccess = function() {
         var data = TitleRequest.result;
         data.QOrdered = input;
         var updateTitleRequest = objectStore.put(data);
     }
-  updateCartTotal();
+    updateCartTotal();
+  }
 }
 
 function removeCartItem(){
@@ -103,28 +142,27 @@ function removeCartItem(){
   var proId = title.split('/');
   item.remove();
   var request = indexedDB.open("MyDB",1);
-  request.onsuccess = function(event) {
-  db = event.target.result;
-  const remItem = db.transaction("products", "readwrite").objectStore("products").delete(proId[8]);
+  if (dbase instanceof IDBDatabase) {
+  const remItem = dbase.transaction("products", "readwrite").objectStore("products").delete(proId[8]);
   remItem.onsuccess=function(event){
       console.log("done");
   }
-}
     updateCartTotal();
     updateMiniCart();
+  }
 }
+
 
 function updateMiniCart(){
 var cartItemContainer = document.getElementsByClassName('mini-cart-products')[0];
 var cartRows = cartItemContainer.getElementsByClassName('content');
 // console.log(cartRows.length);
-var request = indexedDB.open("MyDB",1);
-  request.onsuccess= function(event){
-  db = event.target.result;
-  var objectStore = db.transaction("products","readwrite").objectStore("products");
+if (dbase instanceof IDBDatabase) {
+  var objectStore = dbase.transaction("products","readwrite").objectStore("products");
   objectStore.getAll().onsuccess = function(event){
     const length =event.target.result.length; 
     // console.log(length);
+    var TotalQuantity=0;
     var Total =0;
 for(var i=0;i<length;i++){
   var cartRow =cartRows[i];
@@ -134,8 +172,10 @@ for(var i=0;i<length;i++){
   var price = parseFloat(priceElement.innerText.replace('Price:' , ''));
   var quantity = parseInt(quantityElement.innerText.replace('Qty:' , ''));;
   Total = Total + (price * quantity);
+  TotalQuantity = TotalQuantity + parseInt(quantity);
   // console.log(Total);
 }
+document.getElementsByClassName('cart-number')[0].innerText = TotalQuantity;
 document.getElementsByClassName('miniTotal')[0].innerText = '$' + Total;
 }}
 }
@@ -144,10 +184,8 @@ function updateCartTotal(){
 var cartItemContainer = document.getElementsByClassName('table')[0];
 var cartRows = cartItemContainer.getElementsByClassName('cart-row');
 console.log(cartRows);
-var request = indexedDB.open("MyDB",1);
-  request.onsuccess= function(event){
-  db = event.target.result;
-  var objectStore = db.transaction("products","readwrite").objectStore("products");
+if (dbase instanceof IDBDatabase) {
+  var objectStore = dbase.transaction("products","readwrite").objectStore("products");
   objectStore.getAll().onsuccess = function(event){
     const length =event.target.result.length; 
     var Total =0;
@@ -166,11 +204,9 @@ for(var i=0;i<length;i++){
   console.log(TotalQuantity);
 
 }
+
 document.getElementsByClassName('cart-number')[0].innerText = TotalQuantity;
 document.getElementsByClassName('cart-total')[0].innerText = '$' + Total;
   }}
 
 }
-DisplayAll();
-updateCartTotal();
-updateMiniCart();

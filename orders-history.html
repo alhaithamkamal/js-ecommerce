@@ -173,17 +173,17 @@
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
     
-      <script src="assets/js/indexeddb.js"></script>
+      <script src="assets/js/cart.js"></script>
       <script>
           const dbReq = indexedDB.open(DB_NAME, DB_V);
           dbReq.onsuccess = (ev) => {
-            if (db instanceof IDBDatabase) {
-                const tx = db.transaction(ORDERS_STORE_NAME, 'readwrite');
-                const orderStore = tx.objectStore(ORDERS_STORE_NAME);
+            if (dbase instanceof IDBDatabase) {
+                const tx = dbase.transaction('orders', 'readwrite');
+                const orderStore = tx.objectStore('orders');
                 let res = orderStore.getAll();
                 res.onsuccess = (e) => {
                     orders =  e.target.result
-                    //console.log(orders)
+                    $('#tbody').empty();
                     orders.forEach(order => {
                           $('#tbody').append(`<tr>
                             <th scope="row">${order.num}</th>

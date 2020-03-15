@@ -26,6 +26,8 @@
     
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     
     <!-- Modernizer JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
@@ -101,20 +103,21 @@
                     <div class="main-menu">
                         <nav>
                             <ul>
-                                <li><a href="index.html">HOME</a></li>
-                                <li><a href="orders-history.html">ORDER LIST</a></li>
-
-                                <li><a href="contact.html">CONTACT</a></li>
-                                <li><a href="about-us.html">ABOUT US</a></li>
+                                <li><a href="./index.html">HOME</a></li>
+                                <li><a href="./cart.html">CART LIST</a></li>
+                                <li><a href="./orders-history.html">ORDER LIST</a></li>
+                                <li><a href="./contact.html">CONTACT</a></li>
+                                <li><a href="./about-us.html">ABOUT US</a></li>
                             </ul>
                         </nav>
                     </div><!-- Main Menu End -->
                 </div>
 
                 <div class="col order-2 order-lg-12 order-xl-12">
+                    
                     <!-- Header Shop Links Start -->
                     <div class="header-shop-links">
-                        <a href="cart.html" class="header-cart"><i class="ti-shopping-cart"></i> <span class="number">3</span></a>
+                        <a class="header-cart"><i class="ti-shopping-cart"></i> <span class="cart-number">3</span></a>
                         
                     </div><!-- Header Shop Links End -->
                 </div>
@@ -140,42 +143,15 @@
 
     <!-- Mini Cart Products -->
     <ul class="mini-cart-products">
-        <li>
-            <a class="image"><img src="assets/images/product/product-1.png" alt="Product"></a>
-            <div class="content">
-                <a href="single-product.html" class="title">Waxon Note Book Pro 5</a>
-                <span class="price">Price: $295</span>
-                <span class="qty">Qty: 02</span>
-            </div>
-            <button class="remove"><i class="fa fa-trash-o"></i></button>
-        </li>
-        <li>
-            <a class="image"><img src="assets/images/product/product-2.png" alt="Product"></a>
-            <div class="content">
-                <a href="single-product.html" class="title">Aquet Drone D 420</a>
-                <span class="price">Price: $275</span>
-                <span class="qty">Qty: 01</span>
-            </div>
-            <button class="remove"><i class="fa fa-trash-o"></i></button>
-        </li>
-        <li>
-            <a class="image"><img src="assets/images/product/product-3.png" alt="Product"></a>
-            <div class="content">
-                <a href="single-product.html" class="title">Game Station X 22</a>
-                <span class="price">Price: $295</span>
-                <span class="qty">Qty: 01</span>
-            </div>
-            <button class="remove"><i class="fa fa-trash-o"></i></button>
-        </li>
     </ul>
 
     <!-- Mini Cart Bottom -->
     <div class="mini-cart-bottom">    
     
-        <h4 class="sub-total">Total: <span>$1160</span></h4>
+        <h4 class="sub-total">Total: <span class="miniTotal">$1160</span></h4>
 
         <div class="button">
-            <a href="checkout.html">CHECK OUT</a>
+            <a href="#" id="checkout">CHECK OUT</a>
         </div>
         
     </div>
@@ -205,12 +181,12 @@
 
         <!-- Banner -->
         <div class="col-lg-4 col-md-6 col-12 order-lg-1">
-            <div class="banner"><a href="#"><img src="assets/images/image.jpg" alt="Banner"></a></div>
+            <div class="banner"><a href="#"><img src="assets/images/image.jpg" alt="Banner" style="height: 300px ;"></a></div>
         </div>
 
         <!-- Banner -->
         <div class="col-lg-4 col-md-6 col-12 order-lg-3">
-            <div class="banner"><a href="#"><img src="assets/images/image3.jpg" alt="Banner"></a></div>
+            <div class="banner"><a href="#"><img src="assets/images/image3.jpg" alt="Banner" style="height: 300px ;"></a></div>
         </div>
 
     </div>
@@ -245,19 +221,6 @@
                                     <option value="16">16</option>
                                     <option value="20">20</option>
                                     <option value="24">24</option>
-                                </select>
-                            </div>
-
-                            <!-- Product Short -->
-                            <div class="product-short">
-                                <p>Sort by</p>
-                                <select name="sortby" class="nice-select">
-                                    <option value="trending">Trending items</option>
-                                    <option value="sales">Best sellers</option>
-                                    <option value="rating">Best rated</option>
-                                    <option value="date">Newest items</option>
-                                    <option value="price-asc">Price: low to high</option>
-                                    <option value="price-desc">Price: high to low</option>
                                 </select>
                             </div>
 
@@ -309,12 +272,12 @@
 <script src="assets/js/plugins.js"></script>
 <!-- Main JS -->
 <script src="assets/js/main.js"></script>
+<script src="assets/js/cart.js"></script>
 <!-- Get products from api -->
 <script src="assets/js/view-all.js"></script>
 <!-- indexed db for orders history -->
-<script src="assets/js/indexeddb.js"></script>
+<!-- <script src="assets/js/indexeddb.js"></script> -->
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-<link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 
 </body>
 
