@@ -3,51 +3,47 @@ $(function(){
     const q = document.getElementById('q');
     const params = {  
         page : 1,
-        limit : $("#limit-select option:selected").val()
+        limit : 12
     };
     let total_pages;
-    var start =0;
+    let start =0;
     fetchProducts();
     function fetchProducts(){
         $.ajax({
             url: "https://afternoon-falls-30227.herokuapp.com/api/v1/products",
+            type: "GET",
             data: params,
             success: function(res){
                 res.page = params.page;
-                res.total_items = parseInt(res.total_items/params.limit);
+                res.total_pages = parseInt(res.total_items/params.limit);
                 total_pages = res.total_pages;
-                console.log(res)
                 let products = res.data;
                 $(".product-pages").html("<p>Pages "+res.page+" of "+res.total_pages+"</p>");
-                
 
-                for(let i = (parseInt((res.total_pages)/3)+start);i>start;i--)
+                 for(let i = (parseInt((res.total_pages)/2)+start);i>start;i--)
                 {
-                    $("#back").after("<li  id="+i+"><a >"+i+"</a></li>");
-                    $("#"+i+"").on("click",function(){
-                        removePagination(start,total_pages);
-                        console.log("back ",$("#back").next().attr('id')); 
-                        if($("#back").next().attr('id') == i && i != 1 ){
-                             console.log("loglog")
+                    $("#back").after("<li id=btn"+i+"><a>"+i+"</a></li>");
+                    $("#btn"+i).on("click",function(){
+                        if($("#back").next().attr('id') === "btn"+i+"" && i != 1 ){
+                            removePagination(start,total_pages);
                             start--;
                         }
-                        else if($("#next").prev().attr('id') == i && i != total_pages){
-                            console.log("loglog")
+                        else if($("#next").prev().attr('id') === "btn"+i+"" && i != total_pages){
+                            removePagination(start,total_pages);
                             start++;
+                        }else{
+                            removePagination(start,total_pages);
+
                         }
-                        console.log("start ",start);
                         params.page=i;
                         fetchProducts();
-                        console.log("page ",params.page);
                 
                     });
                 
-                } 
-               
-                $("#"+res.page+"").addClass("active");
+                }  
+                
                 $(products_wrap).empty();
                 products.forEach(product => {
-                    //console.log(product);
                     $(products_wrap).append(`<div class="col-xl-3 col-lg-4 col-md-6 col-12 pb-30 pt-10">
                     <!-- Product Start -->
                     <div class="ee-product">
@@ -89,22 +85,11 @@ $(function(){
                                 <h5 class="price">$${product.Price}</h5>
                             </div>
                             <div class="left-content">
-                                <div class="ratting">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
                                 <div class="desc">
                                     <p>${product.Description}</p>
                                 </div>
                                 <div class="actions">
                                     <a href="#" class="add-to-cart"><i class="ti-shopping-cart"></i><span>ADD TO CART</span></a>
-                                    <div class="wishlist-compare">
-                                        <a href="#" data-tooltip="Compare"><i class="ti-control-shuffle"></i></a>
-                                        <a href="#" data-tooltip="Wishlist"><i class="ti-heart"></i></a>
-                                    </div>
                                 </div>
                             </div>
                             <div class="right-content">
@@ -123,17 +108,20 @@ $(function(){
                     </div><!-- Product List End -->
                 </div>`)   
                 });
+
+                $("#btn"+res.page+"").addClass("active");
                 $('.cat').click(event => {
                     event.preventDefault()
                     fetch_products_by_category(event.target.text)
                 })
                 
-            $(".add-to-cart").click(function(event){
-                    toastr.success('We do have the Kapua suite available.', 'Success Alert', {timeOut: 5000});
+                $(".add-to-cart").click(function(event){
+                    toastr.success('this product added successfully', 'Success Alert', {timeOut: 5000});
                         addToCart(event);
                 });
-             updateMiniCart();
-         },
+                
+                updateMiniCart();
+            },
             error: function(jqXHR,textStatus,errorThrown){
                 console.log(jqXHR);
                 console.log(textStatus);
@@ -152,20 +140,33 @@ $(function(){
    
     $("#back").on("click",function(){
         if(params.page > 1){
-            removePagination(start,total_pages); 
+            if($("#back").next().attr('id') === "btn"+params.page+"" && params.page != 1 ){
+                removePagination(start,total_pages);
+                start--;
+            }
+            else{
+                removePagination(start,total_pages);
+
+            }
             params.page--;
             fetchProducts();
         }else{
-            toastr.info('It is the first page.', 'Info', {timeOut: 5000})
+            toastr.info('It is the first page.', 'Info', {timeOut: 2000})
         }
     });
     $("#next").on("click",function(){
         if(params.page < total_pages){
-            removePagination(start,total_pages); 
+            if($("#next").prev().attr('id') === "btn"+params.page+"" && params.page != total_pages){
+                removePagination(start,total_pages);
+                start++;
+            }else{
+                removePagination(start,total_pages);
+
+            }
             params.page++;
             fetchProducts();
         }else{
-            toastr.info('It is the last page.', 'Info', {timeOut: 5000})
+            toastr.info('It is the last page.', 'Info', {timeOut: 2000})
         }
     });
     
@@ -186,9 +187,9 @@ $(function(){
         fetchProducts();
     }
     function removePagination(start,end){
-        for(let j= (parseInt(end/3)+start);j>start;j--)
+        for(let j= (parseInt(end/2)+start);j>start;j--)
         {
-            $("#"+j+"").remove();
+            $("#btn"+j+"").remove();
            
         }
 

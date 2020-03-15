@@ -115,6 +115,27 @@ function displayAll(){
   }
 }
 
+function addToCartProduct(params){
+    
+    const products = params.data.data;
+    const proId = products.ProductId;
+    const title = products.Name;
+    const price = products.Price;
+    const imageSrc = products.ProductPicUrl;
+    const cat = products.Category;
+    const quantity = products.Quantity;
+    const iniQuantity = params.quantity;
+    const Odate = new Date();
+    console.log(proId , title , price , imageSrc , cat , quantity , iniQuantity);
+    if (dbase instanceof IDBDatabase) {        
+        var Products = dbase.transaction("products", "readwrite").objectStore("products");
+        Products.add({ proId : proId , Name : title , Price : price , ProductPicUrl : imageSrc , Category : cat , Quantity : quantity , QOrdered : iniQuantity , OrderDate : Odate});
+    }
+    //updateCartTotal();
+    //updateMiniCart();
+
+}
+
 function addToCart(event){
  var buttonClicked = event.target;
  var shopItem = buttonClicked.parentElement.parentElement.parentElement;
