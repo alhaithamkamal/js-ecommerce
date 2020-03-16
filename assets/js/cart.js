@@ -293,10 +293,11 @@ function removeCartItem(){
   remItem.onsuccess=function(event){
       console.log("done");
       if(page.match('^cart.html')) {
-      updateCartTotal()
-      updateMiniCart()}
+      updateCartTotal();
+  }
   }
 }
+updateMiniCart();
 }
 
 function updateMiniCart(){
@@ -317,7 +318,8 @@ function updateMiniCart(){
         // console.log(priceElement);
         var quantityElement = cartRow.getElementsByClassName('qty')[0];
         var price = parseFloat(priceElement.innerText.replace('Price:' , ''));
-        var quantity = parseInt(quantityElement.innerText.replace('Qty:' , ''));;
+	cartRow.getElementsByClassName('qty')[0].innerText = event.target.result[i].QOrdered;
+        var quantity = parseInt(quantityElement.innerText.replace('Qty:' , ''));
         Total = Total + (price * quantity);
         TotalQuantity = TotalQuantity + parseInt(quantity);
         // console.log(quantityElement);
