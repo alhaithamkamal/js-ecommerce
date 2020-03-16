@@ -3,7 +3,7 @@ const DB_V = 1;
 var dbase;
 const checkout = document.getElementById('checkout');
 const url = window.location.href.split('/')
-const page = url[9]
+const page = url[url.length - 1]
 
 if ('indexedDB' in window) {
   openDB();
