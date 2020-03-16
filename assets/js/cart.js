@@ -94,7 +94,7 @@ function displayAll(){
         $(pro).append(`
           <tr class = "cart-row ${i}">
           <td class="pro-thumbnail">
-          <a href="./single-product.html?id=${event.target.result[i].proId}" class = "img"><img src="${event.target.result[i].ProductPicUrl}" alt="Product"></a></td>
+          <a href="single-product.html?id=${event.target.result[i].proId}" class = "img"><img src="${event.target.result[i].ProductPicUrl}" alt="Product"></a></td>
           <td class="pro-title"><a href="#">${event.target.result[i].Name}</a></td>
           <td class="pro-price"><span>${event.target.result[i].Price}</span></td>
           <td class="pro-quantity"><input class = "quan" type="number" id="${i}" name="quantity"  value = "${event.target.result[i].QOrdered}" min="1" max="${event.target.result[i].Quantity}" onclick="quantityChanged(${event.target.result[i].Quantity},${i});"></td>
@@ -168,7 +168,7 @@ function addToCartProduct(params){
       console.log(i);
       $(mini).append(`
           <li class = "cart ${i}">
-            <a href="${products.proId}" class="image"><img src="${products.ProductPicUrl}"></a>
+            <a href="single-product.html?id=${products.proId}" class="image"><img src="${products.ProductPicUrl}"></a>
             <div class="content" id = ${i}>
                 <a href="single-product.html" class="title">${products.Name}</a>
                 <span class="price">Price: ${products.Price}</span>
@@ -238,7 +238,7 @@ function quantityChanged(max,id){
   const cartRows = cartItemContainer.getElementsByClassName('cart-row '+id)[0];
   const input = cartRows.getElementsByClassName('quan')[0].value;
   const item = cartRows.getElementsByClassName("img")[0].href;
-  var proId = item.split('/');
+  var proId = item.split('=');
   console.log(cartRows , proId[8]);
   if (dbase instanceof IDBDatabase) {
       var objectStore = dbase.transaction("products", "readwrite").objectStore("products");
