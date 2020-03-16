@@ -130,6 +130,7 @@ $(function(){
 
                 $('.cat').click(event => {
                     event.preventDefault()
+                     removePagination(start,total_pages);
                     fetch_products_by_category(event.target.text)
                 })
                 
