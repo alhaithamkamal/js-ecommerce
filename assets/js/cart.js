@@ -105,9 +105,9 @@ function displayAll(){
       }
       $(mini).append(`
           <li class = "cart ${i}">
-            <a href="${event.target.result[i].proId}" class="image"><img src="${event.target.result[i].ProductPicUrl}" alt="Product"></a>
+            <a href="single-product.html?id=${event.target.result[i].proId}" class="image"><img src="${event.target.result[i].ProductPicUrl}" alt="Product"></a>
             <div class="content" id = ${i}>
-                <a href="single-product.html" class="title">${event.target.result[i].Name}</a>
+                <a href="single-product.html?id=${event.target.result[i].proId}" class="title">${event.target.result[i].Name}</a>
                 <span class="price">Price: ${event.target.result[i].Price}</span>
                 <span class="qty">Qty: ${event.target.result[i].QOrdered}</span>
             </div>
