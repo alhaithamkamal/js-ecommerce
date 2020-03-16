@@ -83,7 +83,19 @@ function displayAll(){
       // console.log(event.target.result[i].ProductPicUrl);
     }}}
 }
+ function availableQuantity(proID){
 
+  if (dbase instanceof IDBDatabase) {
+    var Products = dbase.transaction("products", "readwrite").objectStore("products");
+    var objectStore = Products.get(proID);
+   return new Promise(function(resolve, reject) {
+      objectStore.onsuccess = function() { resolve(objectStore.result); };
+      objectStore.onerror = function() { reject(objectStore.error); };
+    });
+               
+        
+  }
+}
 function addToCartProduct(params){
     
     const products = params.data.data;
@@ -98,10 +110,27 @@ function addToCartProduct(params){
     console.log(proId , title , price , imageSrc , cat , quantity , iniQuantity);
     if (dbase instanceof IDBDatabase) {        
         var Products = dbase.transaction("products", "readwrite").objectStore("products");
-        Products.add({ proId : proId , Name : title , Price : price , ProductPicUrl : imageSrc , Category : cat , Quantity : quantity , QOrdered : iniQuantity , OrderDate : Odate});
+        var objectStore = Products.get(proId);
+        console.log(objectStore)
+        objectStore.onsuccess= function(event) {
+          if(event.target.result){
+            var db = event.target.result;
+            console.log("db ",db);
+            console.log("shaklo msh shayfni hena wla a ",parseInt(objectStore.result.QOrdered)+parseInt(iniQuantity));
+            let qty =parseInt(objectStore.result.QOrdered)+parseInt(iniQuantity);
+            Products.put({ proId : proId , Name : title , Price : price , ProductPicUrl : imageSrc , Category : cat , Quantity : quantity , QOrdered : qty , OrderDate : Odate});
+          }
+          else{
+            Products.add({ proId : proId , Name : title , Price : price , ProductPicUrl : imageSrc , Category : cat , Quantity : quantity , QOrdered : iniQuantity , OrderDate : Odate});
+          }
+          
+        }
+        objectStore.onerror =function(event){
+          console.log(event);
+        }
     }
-    //updateCartTotal();
-    //updateMiniCart();
+   // updateCartTotal();
+   // updateMiniCart();
 
 }
 

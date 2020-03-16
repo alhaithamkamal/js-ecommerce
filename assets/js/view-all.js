@@ -3,7 +3,7 @@ $(function(){
     const q = document.getElementById('q');
     const params = {  
         page : 1,
-        limit : 12
+        limit : 8
     };
     let total_pages;
     let start =0;
@@ -169,7 +169,13 @@ $(function(){
             toastr.info('It is the last page.', 'Info', {timeOut: 2000})
         }
     });
-    
+    $("#limit-select").change(function(){
+        params.limit = $('#limit-select option:selected').val();
+        removePagination(start,total_pages);
+        fetchProducts();
+
+    });
+
     function fetch_products_by_category(category) {
         params.category = category;
         fetchProducts();

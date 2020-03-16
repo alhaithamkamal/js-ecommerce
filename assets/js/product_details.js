@@ -111,8 +111,22 @@ $(function(){
             </div>
             
         </div>`)
-        
+        let qty =-1;
+        availableQuantity(product_details.ProductId).then((result) => {
+        if(result){
+            qty=result.Quantity;
+            if(qty == 0){
+                 $(".details_quantity").html("");
+                $(".stock").html("<span>Out of Stock</span>");
+                $(".quantity-colors").hide();
+                $(".actions").hide();
+            }else{
+                $(".details_quantity").html(result.Quantity);
+            }
+        }
+        });
 
+        
         $('.pro-qty').prepend('<span class="dec qtybtn">-</span>');
         $('.pro-qty').append('<span class="inc qtybtn">+</span>');
         $('.qtybtn').on('click', function() {
@@ -134,13 +148,11 @@ $(function(){
 
         $('.add-to-cart').on("click",function(){
             let quantity =$(".pro-qty").find('input').val();
-            console.log("quantity",quantity);
-                        console.log("quantity before",data.data.Quantity);
-
+            if(qty != -1){
+                data.data.Quantity=qty;
+            }
             data.data.Quantity=data.data.Quantity-quantity;
             
-            console.log("quantity after",data.data.Quantity);
-
             const params = {
                 quantity:quantity,
                 data:data
