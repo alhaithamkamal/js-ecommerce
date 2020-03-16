@@ -1,7 +1,9 @@
 const DB_NAME = 'MyDB';
-const DB_V = 3;
+const DB_V = 1;
 var dbase;
 const checkout = document.getElementById('checkout');
+const url = window.location.href.split('/')
+const page = url[url.length - 1]
 
 if ('indexedDB' in window) {
   openDB();
@@ -16,7 +18,14 @@ function openDB(){
   dbReq.onupgradeneeded = (ev) => {
       const dbase = ev.target.result;
       if (!dbase.objectStoreNames.contains('products')) {
-        booksStore = dbase.createObjectStore('products', { keyPath: 'proId' });
+        var objectStore = dbase.createObjectStore("products", {keyPath: "proId"});
+        objectStore.createIndex("Name", "Name", { unique: true });
+        objectStore.createIndex("Price", "Price", { unique: false });
+        objectStore.createIndex("ProductPicUrl", "ProductPicUrl", { unique: false });
+        objectStore.createIndex("Category", "Category", { unique: false });
+        objectStore.createIndex("Quantity", "Quantity", { unique: false });
+        objectStore.createIndex("QOrdered", "QOrdered", { unique: false });
+        objectStore.createIndex("OrderDate" , "OrderDate" , {unique : false});
       }
       if (!dbase.objectStoreNames.contains('orders')) {
         orderStore = dbase.createObjectStore('orders', { keyPath: 'num', autoIncrement: true });
@@ -25,7 +34,7 @@ function openDB(){
 
   dbReq.onsuccess = (ev) => {
     dbase = ev.target.result;
-    displayAll();
+    if(page.match('^cart.html')) displayAll();
   }
 }
 function save_order(totalPrice) {
@@ -36,6 +45,21 @@ function save_order(totalPrice) {
           total_price: totalPrice,
           date: new Date(),
       });
+  }
+}
+if(page.match('^cart.html')){
+  document.getElementById('cart-checkout').onclick = (e) => {
+    e.preventDefault();
+    let total_price = 0
+    var objectStore = dbase.transaction("products","readwrite").objectStore("products");
+    objectStore.getAll().onsuccess = function(event){
+      for(let i=0;j=event.target.result.length,i<j;i++){
+        let price = event.target.result[i].Price
+        let quantity = event.target.result[i].QOrdered
+        total_price += (price * quantity)
+      }
+      save_order(total_price)
+    }
   }
 }
 checkout.onclick = (e) => {
@@ -53,11 +77,15 @@ checkout.onclick = (e) => {
 }
 function displayAll(){  
   if (dbase instanceof IDBDatabase) {
+  let total_price = 0
   var objectStore = dbase.transaction("products","readwrite").objectStore("products");
   objectStore.getAll().onsuccess = function(event){
   const pro = document.getElementsByTagName('tbody');
   const mini = document.getElementsByClassName('mini-cart-products');
     for(let i=0;j=event.target.result.length,i<j;i++){
+      let price = event.target.result[i].Price
+      let quantity = event.target.result[i].QOrdered
+      total_price += (price * quantity)
       $(pro).append(`
         <tr class = "cart-row ${i}">
         <td class="pro-thumbnail">
@@ -81,7 +109,10 @@ function displayAll(){
         </li>
         `);
       // console.log(event.target.result[i].ProductPicUrl);
-    }}}
+    }
+    $('.cart-total')[0].innerText = '$'+total_price
+  }
+  }
 }
  function availableQuantity(proID){
 
@@ -139,7 +170,7 @@ function addToCart(event){
  var shopItem = buttonClicked.parentElement.parentElement.parentElement;
  var producId = shopItem.getElementsByClassName('img')[0].href;
  var proId = producId.split('=');
- url = "https://afternoon-falls-30227.herokuapp.com/api/v1/products/"+proId[1];
+ let url = "https://afternoon-falls-30227.herokuapp.com/api/v1/products/"+proId[1];
  fetch(url)
     .then(response=>{
         return response.json();
@@ -159,7 +190,7 @@ function addToCart(event){
       var Products = dbase.transaction("products", "readwrite").objectStore("products");
       Products.add({ proId : proId , Name : title , Price : price , ProductPicUrl : imageSrc , Category : cat , Quantity : quantity , QOrdered : iniQuantity , OrderDate : Odate});
       }
-      updateCartTotal();
+      if(page.match('^cart.html')) updateCartTotal();
       updateMiniCart();
     });
 }
@@ -178,8 +209,8 @@ function quantityChanged(max,id){
         var data = TitleRequest.result;
         data.QOrdered = input;
         var updateTitleRequest = objectStore.put(data);
+        if(page.match('^cart.html')) updateCartTotal();
     }
-    updateCartTotal();
   }
 }
 
@@ -191,17 +222,15 @@ function removeCartItem(){
   const title = item.getElementsByClassName('img')[0].href;
   var proId = title.split('/');
   item.remove();
-  var request = indexedDB.open("MyDB",1);
   if (dbase instanceof IDBDatabase) {
-  const remItem = dbase.transaction("products", "readwrite").objectStore("products").delete(proId[8]);
+  const remItem = dbase.transaction("products", "readwrite").objectStore("products").delete(proId[9]);
   remItem.onsuccess=function(event){
       console.log("done");
-  }
-    updateCartTotal();
-    updateMiniCart();
+      if(page.match('^cart.html')) updateCartTotal()
+      updateMiniCart()
   }
 }
-
+}
 
 function updateMiniCart(){
 var cartItemContainer = document.getElementsByClassName('mini-cart-products')[0];
@@ -231,32 +260,29 @@ document.getElementsByClassName('miniTotal')[0].innerText = '$' + Total;
 }
 
 function updateCartTotal(){
-var cartItemContainer = document.getElementsByClassName('table')[0];
-var cartRows = cartItemContainer.getElementsByClassName('cart-row');
-console.log(cartRows);
-if (dbase instanceof IDBDatabase) {
-  var objectStore = dbase.transaction("products","readwrite").objectStore("products");
-  objectStore.getAll().onsuccess = function(event){
-    const length =event.target.result.length; 
-    var Total =0;
-    var TotalQuantity=0;
-for(var i=0;i<length;i++){
-  var cartRow =cartRows[i];
-  var priceElement = cartRow.getElementsByClassName('pro-price')[0];
-  var quantityElement = cartRow.getElementsByClassName('quan')[0].value;
-  var price = parseFloat(priceElement.innerText.replace('$' , ''));
-  // cartRow.getElementById(i)[0].innerText = '$' + (price*quantity);
-  var quantity = quantityElement;
-  Total = Total + (price * quantity);
-  TotalQuantity = TotalQuantity + parseInt(quantity);
-  cartRow.getElementsByClassName('sub-Total')[0].innerText = '$' + (price * quantity);
-  console.log(Total);
-  console.log(TotalQuantity);
-
-}
-
-document.getElementsByClassName('cart-number')[0].innerText = TotalQuantity;
-document.getElementsByClassName('cart-total')[0].innerText = '$' + Total;
-  }}
-
+  var cartItemContainer = document.getElementsByClassName('table')[0];
+  var cartRows = cartItemContainer.getElementsByClassName('cart-row');
+  if (dbase instanceof IDBDatabase) {
+    var objectStore = dbase.transaction("products","readwrite").objectStore("products");
+    objectStore.getAll().onsuccess = function(event){
+      const length =event.target.result.length; 
+      var Total =0;
+      var TotalQuantity=0;
+      for(var i=0;i<length;i++){
+        var cartRow =cartRows[i];
+        var priceElement = cartRow.getElementsByClassName('pro-price')[0];
+        var quantityElement = cartRow.getElementsByClassName('quan')[0].value;
+        var price = parseFloat(priceElement.innerText.replace('$' , ''));
+        // cartRow.getElementById(i)[0].innerText = '$' + (price*quantity);
+        var quantity = quantityElement;
+        Total = Total + (price * quantity);
+        TotalQuantity = TotalQuantity + parseInt(quantity);
+        cartRow.getElementsByClassName('sub-Total')[0].innerText = '$' + (price * quantity);
+        console.log(Total);
+        console.log(TotalQuantity);
+      }
+      document.getElementsByClassName('cart-number')[0].innerText = TotalQuantity;
+      document.getElementsByClassName('cart-total')[0].innerText = '$' + Total;
+    }
+  }
 }
