@@ -195,19 +195,19 @@ $(function(){
     });
 
     function fetch_products_by_category(category) {
-        $(".product-showing").hide();
+        $(".product-showing").empty();
         params.category = category;
         fetchProducts();
     }
     function fetch_products_by_search(q){
-        $(".product-showing").hide();
+        $(".product-showing").empty();
         params.page=1;
         if (params.category) delete params.category;
         params.q = q;
         fetchProducts();
     }
     function fetch_products_by_search_and_category(category, q){
-        $(".product-showing").hide();
+        $(".product-showing").empty();
         params.page =1;
         params.category = category;
         params.q = q;
