@@ -272,7 +272,7 @@ function removeMiniCart(id){
   const remItem = dbase.transaction("products", "readwrite").objectStore("products").delete(proId[proId.length -1]);
   remItem.onsuccess=function(event){
       console.log("done");
-      updateMiniCart();
+	updateMiniCart();
       if(page.match('^cart.html')) {
       updateCartTotal();}
       
