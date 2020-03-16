@@ -247,7 +247,10 @@ function quantityChanged(max,id){
         var data = TitleRequest.result;
         data.QOrdered = input;
         var updateTitleRequest = objectStore.put(data);
-        if(page.match('^cart.html')) updateCartTotal();
+       if(page.match('^cart.html')) {
+          updateCartTotal();
+          updateMiniCart(); 
+          } 
     }
   }
 
