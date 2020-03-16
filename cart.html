@@ -4,14 +4,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>E&E - Electronics eCommerce Bootstrap4 HTML Template</title>
+    <title>Electronics eCommerce</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
+   
+
     
     <!-- CSS
-	============================================ -->
+    ============================================ -->
    
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -24,6 +26,8 @@
     
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
     
     <!-- Modernizer JS -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
@@ -71,7 +75,7 @@
                             </div>
                             <div class="submit" id="btn"><button><i class="icofont icofont-search-alt-1"></i></button></div>
                         </form>
-                        
+                         
                     </div><!-- Header Advance Search End -->
                 </div>
 
@@ -99,11 +103,11 @@
                     <div class="main-menu">
                         <nav>
                             <ul>
-                                <li><a href="index.html">HOME</a></li>
-                                <li><a href="./cart.html">CART LIST</a></li>
-                                <li><a href="orders-history.html">ORDER LIST</a></li>
-                                <li><a href="contact.html">CONTACT</a></li>
-                                <li><a href="about-us.html">ABOUT US</a></li>
+                                <li><a href="./index.html">HOME</a></li>
+                                <li class ="active"><a href="./cart.html">CART LIST</a></li>
+                                <li><a href="./orders-history.html">ORDER LIST</a></li>
+                                <li><a href="./contact.html">CONTACT</a></li>
+                                <li><a href="./about-us.html">ABOUT US</a></li>
                             </ul>
                         </nav>
                     </div><!-- Main Menu End -->
@@ -113,7 +117,7 @@
                     
                     <!-- Header Shop Links Start -->
                     <div class="header-shop-links">
-                        <a href="cart.html" class="header-cart"><i class="ti-shopping-cart"></i> <span class="cart-number">3</span></a>
+                        <a href="cart.html" class="header-cart"><i class="ti-shopping-cart"></i> <span class="cart-number">0</span></a>
                         
                     </div><!-- Header Shop Links End -->
                 </div>
@@ -144,10 +148,10 @@
     <!-- Mini Cart Bottom -->
     <div class="mini-cart-bottom">    
     
-        <h4 class="sub-total">Total: <span class = "miniTotal">$1160</span></h4>
+        <h4 class="sub-total">Total: <span class = "miniTotal">0</span></h4>
 
         <div class="button">
-            <a href="checkout.html">CHECK OUT</a>
+            <a id="checkout" href="#">CHECK OUT</a>
         </div>
         
     </div>
@@ -168,8 +172,8 @@
                 <p>similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita</p>
                 <div class="breadcrumb">
                     <ul>
-                        <li><a href="">HOME</a></li>
-                        <li><a href="">Cart</a></li>
+                        <li><a href="./index.html">HOME</a></li>
+                        <li><a href="./cart.html">Cart</a></li>
                     </ul>
                 </div>
             </div>
@@ -217,10 +221,10 @@
                     <div class="col-lg-6 col-12 mb-40 d-flex float-right" id="total">
                         <div class="cart-summary">
                             <div class="cart-summary-wrap">
-                                <h2>Grand Total <span class = cart-total>$1250.00</span></h2>
+                                <h2>Grand Total <span class = cart-total>0.00</span></h2>
                             </div>
                             <div class="cart-summary-button">
-                                <button class="checkout-btn">Checkout</button>
+                                <button class="checkout-btn" id="cart-checkout">Checkout</button>
                             </div>
                         </div>
                     </div>
@@ -246,6 +250,8 @@
 <script src="assets/js/cart.js">
 
 </script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
 
 </body>
 
