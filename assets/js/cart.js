@@ -262,7 +262,7 @@ function removeMiniCart(id){
   const item = buttonClicked.parentElement.parentElement;
   const mcart = document.getElementsByClassName('cart '+id)[0];
   const title = mcart.getElementsByClassName('image')[0].href;
-  var proId = title.split('/');
+  var proId = title.split('=');
   console.log(proId[proId.length-1]);
   console.log(item);
   console.log(mcart);
@@ -288,7 +288,7 @@ function removeCartItem(){
   const mcart = document.getElementsByClassName('cart')[0];
   mcart.remove();
   const title = item.getElementsByClassName('img')[0].href;
-  var proId = title.split('/');
+  var proId = title.split('=');
   console.log(proId[proId.length -1]);
   item.remove();
   if (dbase instanceof IDBDatabase) {
