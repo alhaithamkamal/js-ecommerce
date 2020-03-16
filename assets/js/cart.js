@@ -34,7 +34,7 @@ function openDB(){
 
   dbReq.onsuccess = (ev) => {
     dbase = ev.target.result;
-    if(page.match('^cart.html')) displayAll();
+    displayAll();
   }
 }
 function save_order(totalPrice) {
@@ -86,17 +86,19 @@ function displayAll(){
       let price = event.target.result[i].Price
       let quantity = event.target.result[i].QOrdered
       total_price += (price * quantity)
-      $(pro).append(`
-        <tr class = "cart-row ${i}">
-        <td class="pro-thumbnail">
-        <a href="${event.target.result[i].proId}" class = "img"><img src="${event.target.result[i].ProductPicUrl}" alt="Product"></a></td>
-        <td class="pro-title"><a href="#">${event.target.result[i].Name}</a></td>
-        <td class="pro-price"><span>${event.target.result[i].Price}</span></td>
-        <td class="pro-quantity"><input class = "quan" type="number" id="${i}" name="quantity"  value = "${event.target.result[i].QOrdered}" min="1" max="${event.target.result[i].Quantity}" onclick="quantityChanged(${event.target.result[i].Quantity},${i});"></td>
-        <td class="pro-subtotal" id=${i}><span class="sub-Total">${event.target.result[i].Price}</span></td>
-        <td class="pro-remove"><a href="#" onclick="removeCartItem();"><i class="fa fa-trash-o"></i></a></td>
-        </tr>
-      `);
+      if(page.match('^cart.html')){
+        $(pro).append(`
+          <tr class = "cart-row ${i}">
+          <td class="pro-thumbnail">
+          <a href="${event.target.result[i].proId}" class = "img"><img src="${event.target.result[i].ProductPicUrl}" alt="Product"></a></td>
+          <td class="pro-title"><a href="#">${event.target.result[i].Name}</a></td>
+          <td class="pro-price"><span>${event.target.result[i].Price}</span></td>
+          <td class="pro-quantity"><input class = "quan" type="number" id="${i}" name="quantity"  value = "${event.target.result[i].QOrdered}" min="1" max="${event.target.result[i].Quantity}" onclick="quantityChanged(${event.target.result[i].Quantity},${i});"></td>
+          <td class="pro-subtotal" id=${i}><span class="sub-Total">${event.target.result[i].Price}</span></td>
+          <td class="pro-remove"><a href="#" onclick="removeCartItem();"><i class="fa fa-trash-o"></i></a></td>
+          </tr>
+        `);
+      }
       $(mini).append(`
           <li class = "cart">
             <a class="image"><img src="${event.target.result[i].ProductPicUrl}" alt="Product"></a>
@@ -233,30 +235,31 @@ function removeCartItem(){
 }
 
 function updateMiniCart(){
-var cartItemContainer = document.getElementsByClassName('mini-cart-products')[0];
-var cartRows = cartItemContainer.getElementsByClassName('content');
-// console.log(cartRows.length);
-if (dbase instanceof IDBDatabase) {
-  var objectStore = dbase.transaction("products","readwrite").objectStore("products");
-  objectStore.getAll().onsuccess = function(event){
-    const length =event.target.result.length; 
-    // console.log(length);
-    var TotalQuantity=0;
-    var Total =0;
-for(var i=0;i<length;i++){
-  var cartRow =cartRows[i];
-  // console.log(cartRow);
-  var priceElement = cartRow.getElementsByClassName('price')[0];
-  var quantityElement = document.getElementsByClassName('qty')[0];
-  var price = parseFloat(priceElement.innerText.replace('Price:' , ''));
-  var quantity = parseInt(quantityElement.innerText.replace('Qty:' , ''));;
-  Total = Total + (price * quantity);
-  TotalQuantity = TotalQuantity + parseInt(quantity);
-  // console.log(Total);
-}
-document.getElementsByClassName('cart-number')[0].innerText = TotalQuantity;
-document.getElementsByClassName('miniTotal')[0].innerText = '$' + Total;
-}}
+  var cartItemContainer = document.getElementsByClassName('mini-cart-products')[0];
+  var cartRows = cartItemContainer.getElementsByClassName('content');
+  // console.log(cartRows.length);
+  if (dbase instanceof IDBDatabase) {
+    var objectStore = dbase.transaction("products","readwrite").objectStore("products");
+    objectStore.getAll().onsuccess = function(event){
+      const length =event.target.result.length; 
+      // console.log(length);
+      var TotalQuantity=0;
+      var Total =0;
+      for(var i=0;i<length;i++){
+        var cartRow =cartRows[i];
+        // console.log(cartRow);
+        var priceElement = cartRow.getElementsByClassName('price')[0];
+        var quantityElement = document.getElementsByClassName('qty')[0];
+        var price = parseFloat(priceElement.innerText.replace('Price:' , ''));
+        var quantity = parseInt(quantityElement.innerText.replace('Qty:' , ''));;
+        Total = Total + (price * quantity);
+        TotalQuantity = TotalQuantity + parseInt(quantity);
+        // console.log(Total);
+      }
+    document.getElementsByClassName('cart-number')[0].innerText = TotalQuantity;
+    document.getElementsByClassName('miniTotal')[0].innerText = '$' + Total;
+    }
+  }
 }
 
 function updateCartTotal(){
