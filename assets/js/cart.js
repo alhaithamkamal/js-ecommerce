@@ -216,7 +216,7 @@ function addToCart(event){
       console.log();
       $(mini).append(`
           <li class = "cart ${i}">
-            <a href="${products.proId}" class="image"><img src="${products.ProductPicUrl}"></a>
+            <a href="single-product.html?id=${products.proId}" class="image"><img src="${products.ProductPicUrl}"></a>
             <div class="content" id = ${i}>
                 <a href="single-product.html" class="title">${products.Name}</a>
                 <span class="price">Price: ${products.Price}</span>
