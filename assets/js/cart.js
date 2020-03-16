@@ -94,7 +94,7 @@ function displayAll(){
         $(pro).append(`
           <tr class = "cart-row ${i}">
           <td class="pro-thumbnail">
-          <a href="${event.target.result[i].proId}" class = "img"><img src="${event.target.result[i].ProductPicUrl}" alt="Product"></a></td>
+          <a href="./single-product.html?id=${event.target.result[i].proId}" class = "img"><img src="${event.target.result[i].ProductPicUrl}" alt="Product"></a></td>
           <td class="pro-title"><a href="#">${event.target.result[i].Name}</a></td>
           <td class="pro-price"><span>${event.target.result[i].Price}</span></td>
           <td class="pro-quantity"><input class = "quan" type="number" id="${i}" name="quantity"  value = "${event.target.result[i].QOrdered}" min="1" max="${event.target.result[i].Quantity}" onclick="quantityChanged(${event.target.result[i].Quantity},${i});"></td>
