@@ -3808,7 +3808,7 @@ img.mfp-img {
           font-weight: 400; } }
   .header-advance-search .select {
     float: left;
-    width: 140px; }
+    width: 245px; }
     @media only screen and (min-width: 992px) and (max-width: 1199px) {
       .header-advance-search .select {
         width: 130px; } }

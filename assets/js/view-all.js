@@ -9,6 +9,7 @@ $(function(){
     let total_pages;
     let start =0;
     fetchProducts();
+  
     function fetchProducts(){
         $.ajax({
             url: "https://afternoon-falls-30227.herokuapp.com/api/v1/products",
@@ -17,21 +18,26 @@ $(function(){
             success: function(res){
                 res.total_pages = parseInt(res.total_items/params.limit);
                 total_pages = res.total_pages;
+
                 if(params.page > res.total_pages)
                     params.page = res.total_pages
+
                 res.page = params.page;
                 let products = res.data;
-                if(res.total_pages != 0 || res.page != 1 ){
+
+                if(res.total_pages > 1){
                     $(".product-pages").html("<p>Pages "+res.page+" of "+res.total_pages+"</p>");
                 }
                 else{
                     $(".product-pages").html("");
-                    $(".pagination").hide();
                 }
                 
-                if(res.total_pages <8)
+                if(res.total_pages < 8)
                     division =1
-                 for(let i = (parseInt((res.total_pages)/division)+start);i>start;i--)
+                else
+                    division=2
+
+                for(let i = (parseInt((res.total_pages)/division)+start);i>start;i--)
                 {
                     $("#back").after("<li id=btn"+i+"><a>"+i+"</a></li>");
                     $("#btn"+i).on("click",function(){
