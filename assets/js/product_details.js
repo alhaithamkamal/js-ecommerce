@@ -111,8 +111,10 @@ $(function(){
             </div>
             
         </div>`)
+        
         let qty =-1;
         availableQuantity(product_details.ProductId).then((result) => {
+            console.log(result);
         if(result){
             qty=result.Quantity;
             if(qty == 0){

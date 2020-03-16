@@ -7117,6 +7117,7 @@ img.mfp-img {
     overflow: hidden; }
     .ee-product .content .category-title {
       padding: 15px 20px;
+      height: 100px;
       border-bottom: 1px solid #dddddd;
       display: -webkit-box;
       display: -ms-flexbox;

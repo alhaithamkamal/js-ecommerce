@@ -114,7 +114,8 @@ function displayAll(){
   }
   }
 }
- function availableQuantity(proID){
+
+function availableQuantity(proID){
 
   if (dbase instanceof IDBDatabase) {
     var Products = dbase.transaction("products", "readwrite").objectStore("products");
@@ -122,8 +123,7 @@ function displayAll(){
    return new Promise(function(resolve, reject) {
       objectStore.onsuccess = function() { resolve(objectStore.result); };
       objectStore.onerror = function() { reject(objectStore.error); };
-    });
-               
+    });         
         
   }
 }
@@ -160,8 +160,8 @@ function addToCartProduct(params){
           console.log(event);
         }
     }
-   // updateCartTotal();
-   // updateMiniCart();
+    //updateCartTotal();
+    //updateMiniCart();
 
 }
 
