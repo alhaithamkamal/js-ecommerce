@@ -113,6 +113,8 @@ function displayAll(){
     $('.cart-total')[0].innerText = '$'+total_price
   }
   }
+  updateCartTotal();
+  updateMiniCart();
 }
 
 function availableQuantity(proID){
@@ -160,8 +162,6 @@ function addToCartProduct(params){
           console.log(event);
         }
     }
-    //updateCartTotal();
-    //updateMiniCart();
 
 }
 
