@@ -272,10 +272,9 @@ function removeMiniCart(id){
   const remItem = dbase.transaction("products", "readwrite").objectStore("products").delete(proId[proId.length -1]);
   remItem.onsuccess=function(event){
       console.log("done");
-	updateMiniCart();
       if(page.match('^cart.html')) {
       updateCartTotal();}
-      
+      updateMiniCart();
   }
 }
 }
@@ -303,7 +302,7 @@ function removeCartItem(){
 function updateMiniCart(){
   var cartItemContainer = document.getElementsByClassName('mini-cart-products')[0];
   var cartRows = cartItemContainer.getElementsByClassName('content');
-  // console.log(cartRows.length);
+  // console.log(cartRows);
   if (dbase instanceof IDBDatabase) {
     var objectStore = dbase.transaction("products","readwrite").objectStore("products");
     objectStore.getAll().onsuccess = function(event){
@@ -316,12 +315,12 @@ function updateMiniCart(){
         // console.log(cartRow);
         var priceElement = cartRow.getElementsByClassName('price')[0];
         // console.log(priceElement);
-        var quantityElement = document.getElementsByClassName('qty')[0];
+        var quantityElement = cartRow.getElementsByClassName('qty')[0];
         var price = parseFloat(priceElement.innerText.replace('Price:' , ''));
         var quantity = parseInt(quantityElement.innerText.replace('Qty:' , ''));;
         Total = Total + (price * quantity);
         TotalQuantity = TotalQuantity + parseInt(quantity);
-        // console.log(Total);
+        // console.log(quantityElement);
       }
     document.getElementsByClassName('cart-number')[0].innerText = TotalQuantity;
     document.getElementsByClassName('miniTotal')[0].innerText = '$' + Total;
