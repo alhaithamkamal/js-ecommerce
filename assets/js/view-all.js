@@ -5,6 +5,7 @@ $(function(){
         page : 1,
         limit : 8
     };
+    let division =2;
     let total_pages;
     let start =0;
     fetchProducts();
@@ -14,13 +15,23 @@ $(function(){
             type: "GET",
             data: params,
             success: function(res){
-                res.page = params.page;
                 res.total_pages = parseInt(res.total_items/params.limit);
                 total_pages = res.total_pages;
+                if(params.page > res.total_pages)
+                    params.page = res.total_pages
+                res.page = params.page;
                 let products = res.data;
-                $(".product-pages").html("<p>Pages "+res.page+" of "+res.total_pages+"</p>");
-
-                 for(let i = (parseInt((res.total_pages)/2)+start);i>start;i--)
+                if(res.total_pages != 0 || res.page != 1 ){
+                    $(".product-pages").html("<p>Pages "+res.page+" of "+res.total_pages+"</p>");
+                }
+                else{
+                    $(".product-pages").html("");
+                    $(".pagination").hide();
+                }
+                
+                if(res.total_pages <8)
+                    division =1
+                 for(let i = (parseInt((res.total_pages)/division)+start);i>start;i--)
                 {
                     $("#back").after("<li id=btn"+i+"><a>"+i+"</a></li>");
                     $("#btn"+i).on("click",function(){
@@ -110,6 +121,7 @@ $(function(){
                 });
 
                 $("#btn"+res.page+"").addClass("active");
+
                 $('.cat').click(event => {
                     event.preventDefault()
                     fetch_products_by_category(event.target.text)
@@ -129,6 +141,7 @@ $(function(){
     } 
     $('#btn').click(event => {
         event.preventDefault()
+        removePagination(start,total_pages);
         let cat = $("select#cat-select").children("option:selected").val()
         if (cat == 'All Categories')
             fetch_products_by_search(q.value)
@@ -175,23 +188,26 @@ $(function(){
     });
 
     function fetch_products_by_category(category) {
+        $(".product-showing").hide();
         params.category = category;
         fetchProducts();
     }
     function fetch_products_by_search(q){
-        if (params.page) delete params.page;
+        $(".product-showing").hide();
+        params.page=1;
         if (params.category) delete params.category;
         params.q = q;
         fetchProducts();
     }
     function fetch_products_by_search_and_category(category, q){
-        if (params.page) delete params.page;
+        $(".product-showing").hide();
+        params.page =1;
         params.category = category;
         params.q = q;
         fetchProducts();
     }
     function removePagination(start,end){
-        for(let j= (parseInt(end/2)+start);j>start;j--)
+        for(let j= (parseInt(end/division)+start);j>start;j--)
         {
             $("#btn"+j+"").remove();
            
